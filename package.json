@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "babel-runtime": "^6.26.0",
     "bootstrap": "^5.3.3",
     "next": "14.2.8",
@@ -18,5 +19,10 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.1.4"
+=======
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.8"
+>>>>>>> 4552386 (Initial commit from Create Next App)
   }
 }

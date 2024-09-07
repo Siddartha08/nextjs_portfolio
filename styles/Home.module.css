@@ -105,6 +105,7 @@ a.secondary {
   flex-shrink: 0;
 }
 
+<<<<<<< HEAD
 .introSection {
   background: url('/images/banner.png') no-repeat center center; /* Replace with your image path */
   background-size: cover; /* Cover the entire section */
@@ -216,6 +217,8 @@ a.secondary {
 
 
 
+=======
+>>>>>>> 4552386 (Initial commit from Create Next App)
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -274,4 +277,7 @@ a.secondary {
     filter: invert();
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4552386 (Initial commit from Create Next App)
