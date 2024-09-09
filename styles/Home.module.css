@@ -105,6 +105,117 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.introSection {
+  background: url('/images/banner.png') no-repeat center center; /* Replace with your image path */
+  background-size: cover; /* Cover the entire section */
+  width: 100vw; /* Full width */
+  height: 56.25vw; /* 16:9 Aspect Ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Assuming white text */
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+}
+
+.introSection {
+  background-color: #f8f9fa;
+  min-height: 400px; /* Ensure section is sufficiently tall */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Ensure the height doesn't become too large on wider screens */
+@media (min-aspect-ratio: 16/9) {
+  .introSection {
+      height: 100vh;
+      max-height: 56.25vw;
+  }
+}
+
+/* Ensure the height doesn't become too small on narrower screens */
+@media (max-width: 768px) {
+  .introSection {
+      height: auto;
+      padding: 40px 20px; /* Adjust as needed */
+  }
+}
+/* 
+@media (max-width: @screen-md-min) {
+
+  .introSection h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    border-right: 0.1em solid black; /* Optional cursor effect */
+    /* white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .introSection h1::after {
+    content: '';
+    animation: blink 0.75s step-end infinite;
+  }
+
+} 
+*/ 
+
+
+.introSection h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: inline-block;
+  border-right: 0.1em solid black; /* Optional cursor effect */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.introSection h1::after {
+  content: '';
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.aboutSection {
+  padding: 60px 0;
+}
+
+.skillsSection {
+  padding: 60px 0;
+}
+
+.portfolioSection {
+  padding: 60px 0;
+}
+
+.card {
+  margin: 15px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.footer {
+  padding: 20px 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+
+
+
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -163,3 +274,4 @@ a.secondary {
     filter: invert();
   }
 }
+
