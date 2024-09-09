@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# nextjs_portfolio
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
->>>>>>> 189be11abb9840c352ef0ae8e1f666e33b4d0382
->>>>>>> 4075eb076118237b5a306a126b0601f023ffdfba
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -48,12 +36,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
-=======
->>>>>>> 4075eb076118237b5a306a126b0601f023ffdfba
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
->>>>>>> 189be11abb9840c352ef0ae8e1f666e33b4d0382
