@@ -6,7 +6,7 @@ export const portfolioItems = [
       title: 'Stock Forecasting',
       description: 'A machine learning project for predicting stock prices.',
       technologies: ['Sklearn', 'Python', 'Matplotlib', 'AWS'],
-      image: '/images/p2.png', // Replace with actual image paths
+      image: '/images/p2.png', 
       link: '/portfolio/stock-forecasting',    // Link to individual portfolio page
     },
     {

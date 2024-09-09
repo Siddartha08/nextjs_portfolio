@@ -105,10 +105,6 @@ a.secondary {
   flex-shrink: 0;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 189be11 (initial commit of nextjs portfolio)
 .introSection {
   background: url('/images/banner.png') no-repeat center center; /* Replace with your image path */
   background-size: cover; /* Cover the entire section */
@@ -217,14 +213,6 @@ a.secondary {
 }
 
 
-
-
-
-<<<<<<< HEAD
-=======
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
->>>>>>> 189be11 (initial commit of nextjs portfolio)
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -283,11 +271,3 @@ a.secondary {
     filter: invert();
   }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
-
->>>>>>> 189be11 (initial commit of nextjs portfolio)
