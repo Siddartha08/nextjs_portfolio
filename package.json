@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "babel-runtime": "^6.26.0",
     "bootstrap": "^5.3.3",
     "next": "14.2.8",
@@ -19,22 +17,12 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.1.4"
-=======
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.8"
->>>>>>> 4552386 (Initial commit from Create Next App)
-=======
+    "babel-plugin-styled-components": "^2.1.4",
     "babel-runtime": "^6.26.0",
     "bootstrap": "^5.3.3",
     "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "^6.1.13"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.1.4"
->>>>>>> 189be11 (initial commit of nextjs portfolio)
   }
 }
