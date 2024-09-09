@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Python Development+</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end"  id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-target=".navbar-collapse.show" href="#intro">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-target=".navbar-collapse.show" href="#about">About me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-target=".navbar-collapse.show" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-target=".navbar-collapse.show" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-target=".navbar-collapse.show" href="#Resume">Resume</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<section id="intro" class="intro-section">
+    <div class="container">
+        <p class="lead">My name is JP</p>
+        <h1 class="display-4">I'm a Python Engineer  </h1>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>My Why</h2>
+        <p> Developing in Python has been a wonderful experience for me. Simple and elegant code can often be driven by some of the most efficient implementations of data structures and algorithms. 
+            This elegance is what drives me to continue to learn and grow as a engineer. I would love to work with an organization that values the same principles.
+        
+    </div>
+</section>
+
+<!-- Sections Here -->
+
+<section id="skills" class="skills-section bg-light">
+    <div class="container">
+        <h2 class="text-center">My Tech Stack</h2>
+        <div class="row">
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Python.png') }}" alt="Python" class="skill-icon">
+                    <h3 class="h4 mb-2">Python</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='SQL Developer.png') }}" alt="SQL Developer" class="skill-icon">
+                    <h3 class="h4 mb-2">SQL</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Anaconda.png') }}" alt="Anaconda" class="skill-icon">
+                    <h3 class="h4 mb-2">Anaconda</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='FastApi.png') }}" alt="FastAPI" class="skill-icon"> 
+                    <h3 class="h4 mb-2">FastAPI</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='docker48.png') }}" alt="Docker" class="skill-icon">
+                    <h3 class="h4 mb-2">Docker</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Apache Airflow.png') }}" alt="Apache Airflow" class="skill-icon">
+                    <h3 class="h4 mb-2">Airflow</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Jira.png') }}" alt="Jira" class="skill-icon">
+                    <h3 class="h4 mb-2">Jira</h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Pandas.png') }}" alt="Pandas" class="skill-icon">
+                    <h3 class="h4 mb-2">Pandas</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="new skills" class="skills-section bg-light">
+    <div class="container">
+        <h2 class="text-center">Growing Skills</h2>
+        <div class="row">
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='nvidia.png') }}" alt="Nvidia" class="skill-icon">
+                    <h3 class="h4 mb-2"></h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center " r>
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='React.png') }}" alt="React" class="skill-icon">
+                    <h3 class="h4 mb-2"></h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center " r>
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='rapids-logo.png') }}" alt="Rapids" class="skill-icon rapids">
+                    <h3 class="h4 mb-2"></h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center">
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='MongoDB.png') }}" alt="MongoDB" class="skill-icon">
+                    <h3 class="h4 mb-2"></h3>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 text-center " r>
+                <div class="mt-5">
+                    <img src="{{ url_for('static', filename='Angularjs.png') }}" alt="AngularJS" class="skill-icon">
+                    <h3 class="h4 mb-2"></h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" class="portfolio-section">
+    <div class="container">
+        <h2>Portfolio</h2>
+        <div class="row">
+            <!-- Portfolio Item 1 -->
+            
+            <div class="card col-lg-2 col-md-3 port-card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ url_for('static', filename='Apache Airflow.png') }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Stock Forecasting</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="https://machinelearningpython.s3.us-east-2.amazonaws.com/Machine-Learning-Stock-Price-Prediction.html" class="btn btn-primary">View Project</a>
+                </div>
+              </div>
+            <div class="card col-lg-2 col-md-3 port-card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ url_for('static', filename='p2.png') }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Stock Forecasting</h5>
+                  <p class="card-text">Technologies used: <span style="font-weight: bold"> Sklearn</span>, <span style="font-weight: bold"> Python</span>, <span style="font-weight: bold">matplotlib</span>, <span style="font-weight: bold">AWS</span></p>
+                  <a href="https://machinelearningpython.s3.us-east-2.amazonaws.com/Machine-Learning-Stock-Price-Prediction.html" class="btn btn-primary">View Project</a>
+                </div>
+              </div>
+            <div class="card col-lg-2 col-md-3 port-card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ url_for('static', filename='p1.png') }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Covid Data Visualization</h5>
+                  <p class="card-text">Technologies used: <span style="font-weight: bold"> Python</span>, <span style="font-weight: bold"> Pandas</span>, <span style="font-weight: bold"> Matplotlib</span>, <span style="font-weight: bold"> AWS</span></p>
+                  <a href="https://covidvisualizationpython.s3.us-east-2.amazonaws.com/Covid-Data-Visualization.html" class="btn btn-primary">View Project</a>
+                </div>
+              </div>
+            
+            <!-- Repeat for other portfolio items -->
+        </div>
+    </div>
+</section>
+
+<section id="Resume" class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2>Download My Resume</h2>
+                <p class="lead"></p>
+                <a href="/download_resume" class="btn btn-primary btn-lg">Download PDF</a> 
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-white pt-4 pb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5></h5>
+                <p></p>
+            </div>
+            <div class="col-md-4">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.linkedin.com/in/james-j-p-emery-26318679/" class="text-white">Linkedin</a></li>
+                    <li><a href="https://github.com/Siddartha08" class="text-white">Github</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact</h5>
+                <address>
+                    <strong>James P. (JP) Emery</strong><br>
+                    Houston Texas<br>
+                    E: jemery89@gmail.com<br
+                    <abbr title="Phone">P:</abbr> (918) 406-2760
+                </address>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
+
+
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(function(element){
+    element.addEventListener('click', function (e) {
+      var button = document.querySelector('.navbar-toggler');
+      if(window.getComputedStyle(button).display !== 'none') {
+        button.click();
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
