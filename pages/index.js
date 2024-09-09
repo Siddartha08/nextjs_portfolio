@@ -261,7 +261,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-8 text-center">
-              <h2>Download My Resume</h2>
+              <h2>My Resume</h2>
               <a href="/download_resume" className="btn btn-primary btn-lg">Download PDF</a>
             </div>
           </div>
