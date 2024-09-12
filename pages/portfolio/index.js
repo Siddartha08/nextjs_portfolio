@@ -106,11 +106,11 @@ export default function Portfolio() {
           </PasswordBox>
         </PasswordModal>
       )}
-      <script type="py" src='/main.py'/>
+      
       <section >
       Hello world! <br />
       This is the current date and time, as computed by Python:
-      
+      <script type="py" src='/main.py'/>
       </section>
 
     </Container>
