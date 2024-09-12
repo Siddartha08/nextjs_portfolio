@@ -6,6 +6,14 @@ import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
 import LogoutButton from '../../components/LogoutButton';
 
+
+const pyscript_val = `
+    from datetime import datetime
+    import pandas as pd
+    now = datetime.now()
+    display("Current date and time:", now)
+    `
+
 const Container = styled.div`
   padding: 2rem;
 `;
@@ -98,6 +106,13 @@ export default function Portfolio() {
           </PasswordBox>
         </PasswordModal>
       )}
+      <script type="py" src='/main.py'/>
+      <section >
+      Hello world! <br />
+      This is the current date and time, as computed by Python:
+      
+      </section>
+
     </Container>
   );
 }
