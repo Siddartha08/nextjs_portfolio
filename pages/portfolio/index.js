@@ -5,6 +5,11 @@ import { portfolioItems } from '../../data/portfolio';
 import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
 import LogoutButton from '../../components/LogoutButton';
+import Image from 'next/image';
+import Link from 'next/link';
+import Footer from '../../components/Footer'; 
+
+
 
 
 const pyscript_val = `
@@ -15,20 +20,87 @@ const pyscript_val = `
     `
 
 const Container = styled.div`
-  padding: 2rem;
+    padding
+  : 2rem 4rem; // MODIFIED: Added more horizontal padding
+    background-color: #f8f9fa; 
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 
+  0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10h20v20H10V10z' fill='%23ddd' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"); // NEW: Added subtle background pattern
+  display: flex; // NEW: Make container a flexbox
+  flex-direction: column; // NEW: Stack elements vertically
+  min-height: 100vh; // NEW: Ensure full viewport height
+  `;
+
+const Header = styled.div` // NEW: Container for title and button
+  display: flex;
+  justify-content: space-between; // Position elements on opposite ends
+  align-items: center;
+  margin-bottom: 2rem;
 `;
 
 const PortfolioGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); // MODIFIED: Increased minmax for more spacing
+  gap: 2rem; // MODIFIED: Increased gap for more whitespace
 `;
 
+
 const PortfolioCard = styled.div`
-  padding: 1rem;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  padding: 2rem; // MODIFIED: Increased padding
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // MODIFIED: More pronounced shadow
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; // MODIFIED: Added box-shadow transition
+  &:hover {
+    transform: translateY(-8px); // MODIFIED: Increased translation for a more noticeable effect
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // MODIFIED: Darker shadow on hover
+  }
+`;
+
+const Title = styled.h2`
+  color: #343a40;
+  margin-bottom: 2rem; // MODIFIED: Increased margin
+  font-weight: 600; // MODIFIED: Bolder font weight
+`; 
+
+const ProjectTitle = styled.h3`
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  font-weight: 500; // MODIFIED: Slightly bolder font weight
+`;
+
+const ProjectDescription = styled.p`
+  color: #6c757d;
+  font-size: 1rem; // MODIFIED: Slightly larger font size
+  line-height: 1.6; // MODIFIED: Increased line height for better readability
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 250px; // MODIFIED: Increased height 
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border-radius: 8px; 
+  &:hover { 
+    img {
+      filter: brightness(80%); // NEW: Added subtle darkening on hover
+    }
+  }
+`;
+
+const ViewProjectButton = styled.a`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff; /* Blue button */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
 `;
 
 const PasswordModal = styled.div`
@@ -78,13 +150,22 @@ export default function Portfolio() {
 
   return (
     <Container>
-      <h1>All Portfolio Projects</h1>
+      <Header>      
+      <Title>Portfolio</Title>
       <LogoutButton />
+      </Header>
+
       <PortfolioGrid>
         {portfolioItems.map(item => (
           <PortfolioCard key={item.id} onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <ImageContainer>
+              <Image src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+            </ImageContainer>
+            <ProjectTitle>{item.title}</ProjectTitle>
+            <ProjectDescription>{item.description}</ProjectDescription>
+            <ViewProjectButton href={item.link} target="_blank" rel="noopener noreferrer">
+              View Project
+            </ViewProjectButton>
           </PortfolioCard>
         ))}
       </PortfolioGrid>
@@ -112,7 +193,7 @@ export default function Portfolio() {
       This is the current date and time, as computed by Python:
       <script type="py" src='/main.py'/>
       </section>
-
+      <Footer></Footer>
     </Container>
   );
 }
