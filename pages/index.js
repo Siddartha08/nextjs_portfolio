@@ -246,7 +246,7 @@ export default function Home() {
                       ))}
                     </p>
                     <Link href={item.link}>
-                      <a className="btn btn-primary">View Project</a>
+                      <div className="btn btn-primary">View Project</div>
                     </Link>
                   </div>
                 </div>
@@ -275,8 +275,8 @@ export default function Home() {
             <div className="col-md-4">
               <h5>Links</h5>
               <ul className="list-unstyled">
-                <li><a href="https://www.linkedin.com/in/james-j-p-emery-26318679/" className="text-white">LinkedIn</a></li>
-                <li><a href="https://github.com/Siddartha08" className="text-white">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/james-j-p-emery-26318679/" className="text-white" legacyBehavior>LinkedIn</a></li>
+                <li><a href="https://github.com/Siddartha08" className="text-white" legacyBehavior>GitHub</a></li>
               </ul>
             </div>
             <div className="col-md-4">
