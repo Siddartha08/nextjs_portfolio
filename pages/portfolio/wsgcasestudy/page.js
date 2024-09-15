@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import firebase from "firebase/app";
 import "firebase/firestore"; // Import Firestore if you're using it
 import { Container, Row, Col, Table } from 'react-bootstrap';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
+import { useCookies } from "react-cookie";
 
 function whoshouldgetitPage(props) {
     
