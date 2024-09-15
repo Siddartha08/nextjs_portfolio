@@ -1,0 +1,47 @@
+.section {
+    /* Add any styles for the section here */
+    }
+    .title {
+    /* Styles for the main title */
+    }
+    .tableContainer {
+    /* Styles for the container around the table */
+    padding: 20px; /* Example: Add padding */
+    }
+    .hiddenRow {
+    display: none; 
+    }
+    .dataUpdateMessage {
+    padding: 20px;
+    }
+    .feedbackMessage {
+    padding: 20px; 
+    }
+    
+    .hiddenRow {
+        display: none;
+      }
+      /* Small screens (below medium breakpoint) */
+      @media (max-width: 768px) { 
+        .d-sm-none {
+          display: none;
+        }
+      }
+      /* Medium screens (between medium and large breakpoints) */
+      @media (min-width: 768px) and (max-width: 992px) {
+        .d-md-none {
+          display: none;
+        }
+      }
+      /* Large screens (between large and extra-large breakpoints) */
+      @media (min-width: 992px) and (max-width: 1200px) { 
+        .d-lg-none {
+          display: none;
+        }
+      }
+      /* Extra-large screens (above extra-large breakpoint) */
+      @media (min-width: 1200px) { 
+        .d-xl-none {
+          display: none;
+        }
+      }
