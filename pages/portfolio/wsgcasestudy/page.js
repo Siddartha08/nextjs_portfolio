@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import firebase from "firebase/app";
-import "firebase/firestore"; // Import Firestore if you're using it
-import { Container, Row, Col, Table } from 'react-bootstrap';
+// import firebase from "firebase/app";
+// import "firebase/firestore"; // Import Firestore if you're using it
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { Container, Row, Col, Table, Section } from 'react-bootstrap';
 import { useAuth } from '../../../context/AuthContext';
 import { useCookies } from "react-cookie";
+import * as styles_ws from '/styles/WSGCaseStudy.module.css'; 
+
+
+
+
 
 function whoshouldgetitPage(props) {
     
-  const { authenticated, login } = useAuth();
+  // const { authenticated, login } = useAuth();
 
-  useEffect(() => {
-    if (!authenticated) {
-      setShowModal(true);
-    }
-  }, [authenticated]);
+  // useEffect(() => {
+  //   if (!authenticated) {
+  //     setShowModal(true);
+  //   }
+  // }, [authenticated]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -170,12 +177,12 @@ function whoshouldgetitPage(props) {
         messagingSenderId: process.env.NEXT_PUBLIC_APP_MESSAGING_SENDER_ID,
         appId: process.env.NEXT_PUBLIC_APP_API_ID,
     
-      }
-      if(!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      } else {
-        firebase.app()
-      }
+        }
+      //#if() {
+      const app = initializeApp(firebaseConfig);
+      //} else {
+      const db = getFirestore(app)
+      //}
     
      
       var topRankings = []
@@ -190,22 +197,42 @@ function whoshouldgetitPage(props) {
       // var ReceivedData= 0
       // var comparison = []
     
-        const db = firebase.firestore();
+        //const db = firebase.firestore();
         
+      async function getCollection(db) {
+        const data = collection(db, 'submissions');
+        const data2 = await getDocs(data);
+        const data3 = data2.docs.map(doc => 
+          topRankings = {type:doc.data().sentSet.comp["0"], value: 1},
+          bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1});
+        return data3
+        }
         
-        const data3 = db.collection('submissions')
+        const data3 = collection(db, 'submissions')
         if(showdata === true) {
-        const getAndCreateData = () => {
-          data3.get().then((QS) => {
+          const getAndCreateData = () => {
+          // Suggested code may be subject to a license. Learn more: ~LicenseLog:2530826993.
+          getDocs(data3).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              console.log(doc.id, " => ", doc.data());
+            });
+          });
+          // const data2 = getDocs(data3)
+          // data2.docs.map(doc => 
+          //   topRankings = {type:doc.data().sentSet.comp["0"], value: 1})
+          //   bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1}
+
+          // data3.get().then((QS) => {
           
-            const tempDoc = QS.docs.map((doc) =>{
-              topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
-              bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
+          //   const tempDoc = QS.docs.map((doc) =>{
+          //     topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
+          //     bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
               
     
              
-              return 
-            })
+          //     return 
+          //   })
       
             topRankings.forEach((element) => {
               allComparison.push(element)
@@ -232,45 +259,23 @@ function whoshouldgetitPage(props) {
               }
               this[e.type].value += e.value;
             }, Object.create(null))
-    
-    
-    
-    
-            allResults.forEach(function(e) {
-     
-              for(let i = 0; i < topRankings2.length; i++){
             
+            allResults.forEach(function(e) {
+              for(let i = 0; i < topRankings2.length; i++){
                 if(e.type === topRankings2[i].type){
-                  
-               
                   e.percentage = parseInt(((topRankings2[i].value)/parseFloat(e.value)*100).toFixed(2))
                   i++
                 } else {
                   
                 }
-            
               }
-    
               for(let j = 0; j < allResults.length; j++){
                 if(e.percentage === undefined) {
                   e.percentage = 0;
                 }
               }
-    
-    
             })
     
-            
-       
-      
-      
-      
-      
-    
-            
-      
-         
-      
               //set revResults to a new array with parse and stringify so that I can have two seperate sorted arrays
                revResults = JSON.parse(JSON.stringify(allResults))
                revResults.sort((a, b) => ((a.percentage < b.percentage) ? -1 : (a.value > b.value) ? 1 : 0))
@@ -292,50 +297,29 @@ function whoshouldgetitPage(props) {
                
     
       
-          })
+          }
      
     
-        }
+        
         getAndCreateData()
-    
+      
       }
-    },[showdata])      
+},[showdata])      
 
     return (
-<Section className={styles.section}>
-            <Container>
-                <h1 className={styles.title}>Who Should Get It First? Case Study</h1>
-                {/* ... (Your other JSX) */}
-                <div className={styles.tableContainer}> 
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                {/* <th>#</th> */}
-                                <th>Category</th>
-                                <th>Percentage</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {noLoad === false ? "Loading..." : RevResultsVal["0"].map((item, i) => (
-                                <tr className={i < 8 ? '' : styles.hiddenRow} key={i}>
-                                    {/* <td className={i < 8 ? "" : styles.hiddenRow}>{i + 1}</td> */}
-                                    <td className={i < 8 ? '' : styles.hiddenRow}>{noLoad === false ? "undefined" : categories[item.type]}</td>
-                                    <td className={i < 8 ? '' : styles.hiddenRow}>{noLoad === false ? "undefined" : item.percentage + "%"}</td>
-                                    <td className={i < 8 ? '' : styles.hiddenRow}>{noLoad === false ? "undefined" : item.value}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </div>
-                <div className={styles.dataUpdateMessage}>
-                    *Data updates on the screen after the first 10 submissions.
-                </div>
-                <div className={styles.feedbackMessage}>
-                    Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
-                </div>
-            </Container>
-        </Section>
+<div className={styles_ws.section}> 
+    <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
+    <div className={styles_ws.tableContainer}>
+
+    </div>
+    <div className={styles_ws.dataUpdateMessage}>
+        *Data updates on the screen after the first 10 submissions.
+    </div>
+    <div className={styles_ws.feedbackMessage}>
+        Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
+    </div>
+</div>
+   
     );
   }
   export default whoshouldgetitPage;
