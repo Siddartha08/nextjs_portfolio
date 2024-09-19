@@ -14,7 +14,35 @@ import * as styles_ws from '/styles/WSGCaseStudy.module.css';
 
 
 function whoshouldgetitPage(props) {
-    
+  
+  // const firebaseConfig = { 
+  //   apiKey: process.env.NEXT_PUBLIC_APP_API_KEY,
+  //   authDomain: process.env.NEXT_PUBLIC_APP_FIREBASE_AUTH_DOAMIN,
+  //   projectId: process.env.NEXT_PUBLIC_APP_FIREBASE_PROJECT_ID,
+  //   storageBucket: process.env.NEXT_PUBLIC_APP_FIREBASE_STORAGE_BUCKET,
+  //   messagingSenderId: process.env.NEXT_PUBLIC_APP_MESSAGING_SENDER_ID,
+  //   appId: process.env.NEXT_PUBLIC_APP_API_ID,
+  
+  //   }
+  
+  // const app = initializeApp(firebaseConfig);
+  // const db = getFirestore(app)
+
+  const subs = []
+
+  // async function getSubmissions() { 
+  //   const subs = []
+  //   const submissionsCol = collection(db, 'submissions'); 
+  //   const submissionSnapshot = await getDocs(submissionsCol); 
+  //   submissionSnapshot.forEach((doc) => {
+  //     subs.push({id: doc.id, ...doc.data()});
+  //   })
+  //   //console.log(subs)
+  //   return subs
+  // }
+  // const subData = await getSubmissions()
+  // console.log(subdata)
+
   // const { authenticated, login } = useAuth();
 
   // useEffect(() => {
@@ -47,7 +75,7 @@ function whoshouldgetitPage(props) {
     }
 
     var [showdata, setShowData] = useState(true)
-
+    var [fsdata, setFsData] = useState([])
   
     const [tencount, tenCountChange] = useState(0);
   
@@ -199,25 +227,42 @@ function whoshouldgetitPage(props) {
     
         //const db = firebase.firestore();
         
-      async function getCollection(db) {
-        const data = collection(db, 'submissions');
-        const data2 = await getDocs(data);
-        const data3 = data2.docs.map(doc => 
-          topRankings = {type:doc.data().sentSet.comp["0"], value: 1},
-          bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1});
-        return data3
-        }
+      // async function getCollection(db) {
+      //   const data = collection(db, 'submissions');
+      //   const data2 = await getDocs(data);
+      //   const data3 = data2.docs.map(doc => 
+      //     topRankings = {type:doc.data().sentSet.comp["0"], value: 1},
+      //     bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1});
+      //   return data3
+      //   }
         
         const data3 = collection(db, 'submissions')
+        console.log(data3)
         if(showdata === true) {
           const getAndCreateData = () => {
-          // Suggested code may be subject to a license. Learn more: ~LicenseLog:2530826993.
-          getDocs(data3).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              console.log(doc.id, " => ", doc.data());
-            });
-          });
+            const data4 = getDocs(data3)
+            console.log('data4', data4)
+            data4.then((QS) => {
+      
+              const tempDoc = QS.docs.map((doc) =>{
+                topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
+                bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
+                
+      
+               
+                return 
+              })})
+
+
+
+          // getDocs(data3).then((querySnapshot) => {
+          //   querySnapshot.forEach((doc) => {
+          //     subs.push(doc.data())// doc.data() is never undefined for query doc snapshots
+          //     console.log(doc.id, " => ", doc.data());
+          //   });
+          // });
+          // setFsData(subs)
+          // console.log(fsdata)
           // const data2 = getDocs(data3)
           // data2.docs.map(doc => 
           //   topRankings = {type:doc.data().sentSet.comp["0"], value: 1})
@@ -225,15 +270,20 @@ function whoshouldgetitPage(props) {
 
           // data3.get().then((QS) => {
           
-          //   const tempDoc = QS.docs.map((doc) =>{
-          //     topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
-          //     bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
-              
-    
-             
-          //     return 
-          //   })
-      
+            // const tempDoc = QS.docs.map((doc) =>{
+            //   topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
+            //   bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
+            // subs.forEach((doc) => {
+            //   topRankings.push({ type: doc.sentSet.comp[0], value: 1 });
+            //   bottomRankings.push({ type: doc.sentSet.comp[1], value: 1 });
+            // });
+          console.log('top rankings', topRankings)
+          console.log('bottom rankings', bottomRankings)
+            //   return 
+            // })
+            
+            
+
             topRankings.forEach((element) => {
               allComparison.push(element)
             })
@@ -297,20 +347,25 @@ function whoshouldgetitPage(props) {
                
     
       
-          }
-     
-    
-        
-        getAndCreateData()
+          
       
       }
-},[showdata])      
+      getAndCreateData()
+        }
+      
+        
+        }, [showdata])      
 
     return (
 <div className={styles_ws.section}> 
     <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
     <div className={styles_ws.tableContainer}>
+    {subs.map((item, index) => (
+        <div key={index} style={{ marginBottom: '20px', padding: '10px', border: '1px solid #ccc' }}>
+          <p><strong>Name:</strong> VALUE {item.unique}</p>
 
+        </div>
+      ))}
     </div>
     <div className={styles_ws.dataUpdateMessage}>
         *Data updates on the screen after the first 10 submissions.
