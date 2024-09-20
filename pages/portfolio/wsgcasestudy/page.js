@@ -315,7 +315,12 @@ function whoshouldgetitPage(props) {
 <div className={styles_ws.section}> 
     <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
     <div className={styles_ws.tableContainer}>
-    <table>
+    <Table striped bordered hover>
+      <thead>
+        <th>Categories</th>
+        <th>Percentage</th>
+        <th># of Appearances</th>
+      </thead>
       <tbody>
         {noLoad === false ? (
           <tr>
@@ -338,7 +343,7 @@ function whoshouldgetitPage(props) {
           ))
         )}
       </tbody>
-    </table> 
+    </Table> 
     </div>
     <div className={styles_ws.dataUpdateMessage}>
         *Data updates on the screen after the first 10 submissions.
