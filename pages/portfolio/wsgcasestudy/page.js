@@ -15,15 +15,7 @@ import * as styles_ws from '/styles/WSGCaseStudy.module.css';
 
 function whoshouldgetitPage(props) {
   
-  // const firebaseConfig = { 
-  //   apiKey: process.env.NEXT_PUBLIC_APP_API_KEY,
-  //   authDomain: process.env.NEXT_PUBLIC_APP_FIREBASE_AUTH_DOAMIN,
-  //   projectId: process.env.NEXT_PUBLIC_APP_FIREBASE_PROJECT_ID,
-  //   storageBucket: process.env.NEXT_PUBLIC_APP_FIREBASE_STORAGE_BUCKET,
-  //   messagingSenderId: process.env.NEXT_PUBLIC_APP_MESSAGING_SENDER_ID,
-  //   appId: process.env.NEXT_PUBLIC_APP_API_ID,
-  
-  //   }
+
   
   // const app = initializeApp(firebaseConfig);
   // const db = getFirestore(app)
@@ -74,18 +66,21 @@ function whoshouldgetitPage(props) {
   
     }
 
-    var [showdata, setShowData] = useState(true)
+    //var [showdata, setShowData] = useState(true)
     var [fsdata, setFsData] = useState([])
   
     const [tencount, tenCountChange] = useState(0);
   
    
   
-    var [allResultsVal, setAllResultsVal] = useState([])
-    var [RevResultsVal, setRevResultsVal] = useState([])
+    //var [allResultsVal, setAllResultsVal] = useState([])
+    //var [RevResultsVal, setRevResultsVal] = useState([])
     const [set, toBeSet] = useState([])
-    const [noLoad, noLoadSet] = useState(false)
-  
+    //const [noLoad, noLoadSet] = useState(false)
+    const [allResultsVal, setAllResultsVal] = useState([]);
+    const [revResultsVal, setRevResultsVal] = useState([]);
+    const [noLoad, setNoLoad] = useState(false);
+    const [showdata, setShowData] = useState(true)
     
     
   
@@ -190,182 +185,160 @@ function whoshouldgetitPage(props) {
     
       }
     
-    useEffect(() => {
-        randomIndex1 = randomNumber(1, 42, -1);
-        randomIndex2 = randomNumber(1, 42, randomIndex1)
-        handleCookie()
-        // console.log(cookie)
-        toBeSet([])
-        // console.log(set)
-        const firebaseConfig = { 
+      const firebaseConfig = { 
         apiKey: process.env.NEXT_PUBLIC_APP_API_KEY,
         authDomain: process.env.NEXT_PUBLIC_APP_FIREBASE_AUTH_DOAMIN,
         projectId: process.env.NEXT_PUBLIC_APP_FIREBASE_PROJECT_ID,
         storageBucket: process.env.NEXT_PUBLIC_APP_FIREBASE_STORAGE_BUCKET,
         messagingSenderId: process.env.NEXT_PUBLIC_APP_MESSAGING_SENDER_ID,
         appId: process.env.NEXT_PUBLIC_APP_API_ID,
-    
+      
         }
-      //#if() {
-      const app = initializeApp(firebaseConfig);
-      //} else {
-      const db = getFirestore(app)
-      //}
-    
-     
-      var topRankings = []
-      var topRankings2 = []
-      var bottomRankings = []
-      // var bottomRankings2 = []
-      // var topResults = []
-      // var bottomResults = []
-      var allComparison = []
-      var allResults = []
-      var revResults = []
-      // var ReceivedData= 0
-      // var comparison = []
-    
-        //const db = firebase.firestore();
-        
-      // async function getCollection(db) {
-      //   const data = collection(db, 'submissions');
-      //   const data2 = await getDocs(data);
-      //   const data3 = data2.docs.map(doc => 
-      //     topRankings = {type:doc.data().sentSet.comp["0"], value: 1},
-      //     bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1});
-      //   return data3
-      //   }
-        
-        const data3 = collection(db, 'submissions')
-        console.log(data3)
-        if(showdata === true) {
-          const getAndCreateData = () => {
-            const data4 = getDocs(data3)
-            console.log('data4', data4)
-            data4.then((QS) => {
+
+        const app = initializeApp(firebaseConfig);
+        //} else {
+        const db = getFirestore(app)
+
+        useEffect(() => {
+          console.log('useEffect triggered');
       
-              const tempDoc = QS.docs.map((doc) =>{
-                topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
-                bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
-                
+          const fetchData = async () => {
+            if (showdata === true) {
+              console.log('showdata is true');
       
-               
-                return 
-              })})
-
-
-
-          // getDocs(data3).then((querySnapshot) => {
-          //   querySnapshot.forEach((doc) => {
-          //     subs.push(doc.data())// doc.data() is never undefined for query doc snapshots
-          //     console.log(doc.id, " => ", doc.data());
-          //   });
-          // });
-          // setFsData(subs)
-          // console.log(fsdata)
-          // const data2 = getDocs(data3)
-          // data2.docs.map(doc => 
-          //   topRankings = {type:doc.data().sentSet.comp["0"], value: 1})
-          //   bottomRankings = {type:doc.data().sentSet.comp["1"], value: 1}
-
-          // data3.get().then((QS) => {
-          
-            // const tempDoc = QS.docs.map((doc) =>{
-            //   topRankings.push({type: doc.data().sentSet.comp["0"], value: 1})
-            //   bottomRankings.push({type: doc.data().sentSet.comp["1"], value: 1})
-            // subs.forEach((doc) => {
-            //   topRankings.push({ type: doc.sentSet.comp[0], value: 1 });
-            //   bottomRankings.push({ type: doc.sentSet.comp[1], value: 1 });
-            // });
-          console.log('top rankings', topRankings)
-          console.log('bottom rankings', bottomRankings)
-            //   return 
-            // })
-            
-            
-
-            topRankings.forEach((element) => {
-              allComparison.push(element)
-            })
-            bottomRankings.forEach((element) =>{
-              allComparison.push(element)
-            })
-            
-    
-            topRankings.forEach(function(e) {
-              if(!this[e.type]) {
-                this[e.type] = {type: e.type, value: 0}
-                topRankings2.push(this[e.type])
+              // Generate random indices and handle cookies
+              const randomIndex1 = randomNumber(1, 42, -1);
+              const randomIndex2 = randomNumber(1, 42, randomIndex1);
+              handleCookie();
+              toBeSet([]);
+      
+              console.log('Random indices:', randomIndex1, randomIndex2);
+      
+              // Initialize arrays and maps for processing
+              const topRankings = [];
+              const bottomRankings = [];
+              const allComparison = [];
+              const topRankingsMap = {};
+              const allResultsMap = {};
+      
+              try {
+                // Get the 'submissions' collection from Firestore
+                const submissionsCollection = collection(db, 'submissions');
+                console.log('submissionsCollection:', submissionsCollection);
+      
+                const querySnapshot = await getDocs(submissionsCollection);
+                console.log('querySnapshot:', querySnapshot);
+      
+                // Process each document in the collection
+                querySnapshot.forEach((doc) => {
+                  const data = doc.data();
+      
+                  // Assuming sentSet.comp is an array
+                  topRankings.push({ type: data.sentSet.comp[0], value: 1 });
+                  bottomRankings.push({ type: data.sentSet.comp[1], value: 1 });
+                });
+      
+                console.log('Top Rankings:', topRankings);
+                console.log('Bottom Rankings:', bottomRankings);
+      
+                // Combine top and bottom rankings
+                allComparison.push(...topRankings, ...bottomRankings);
+                console.log('All Comparison:', allComparison);
+      
+                // Create a map for top rankings to count occurrences
+                topRankings.forEach((item) => {
+                  if (!topRankingsMap[item.type]) {
+                    topRankingsMap[item.type] = { type: item.type, value: 0 };
+                  }
+                  topRankingsMap[item.type].value += item.value;
+                });
+      
+                // Create a map for all results to count occurrences
+                allComparison.forEach((item) => {
+                  if (!allResultsMap[item.type]) {
+                    allResultsMap[item.type] = { type: item.type, value: 0 };
+                  }
+                  allResultsMap[item.type].value += item.value;
+                });
+      
+                console.log('Top Rankings Map:', topRankingsMap);
+                console.log('All Results Map:', allResultsMap);
+      
+                // Convert the maps to arrays
+                const topRankingsArray = Object.values(topRankingsMap);
+                const allResultsArray = Object.values(allResultsMap);
+      
+                // Calculate percentages
+                allResultsArray.forEach((item) => {
+                  const topItem = topRankingsMap[item.type];
+                  if (topItem) {
+                    item.percentage = parseFloat(
+                      ((topItem.value / item.value) * 100).toFixed(2)
+                    );
+                  } else {
+                    item.percentage = 0;
+                  }
+                });
+      
+                console.log('All Results with Percentages:', allResultsArray);
+      
+                // Create copies for sorting
+                const sortedResults = [...allResultsArray].sort(
+                  (a, b) => b.percentage - a.percentage
+                );
+                const revSortedResults = [...allResultsArray].sort(
+                  (a, b) => a.percentage - b.percentage
+                );
+      
+                console.log('Sorted Results:', sortedResults);
+                console.log('Reverse Sorted Results:', revSortedResults);
+      
+                // Update state variables
+                setAllResultsVal(sortedResults);
+                setRevResultsVal(revSortedResults);
+                setNoLoad(true);
+      
+                console.log('Data fetching and processing complete.');
+              } catch (error) {
+                console.log('Error fetching data:', error);
+                return
               }
-              this[e.type].value += e.value;
-            }, Object.create(null))
-    
-    
-    
-            allComparison.forEach(function(e) {
-              if(!this[e.type]) {
-                this[e.type] = {type: e.type, value:0}
-                allResults.push(this[e.type])
-              }
-              this[e.type].value += e.value;
-            }, Object.create(null))
-            
-            allResults.forEach(function(e) {
-              for(let i = 0; i < topRankings2.length; i++){
-                if(e.type === topRankings2[i].type){
-                  e.percentage = parseInt(((topRankings2[i].value)/parseFloat(e.value)*100).toFixed(2))
-                  i++
-                } else {
-                  
-                }
-              }
-              for(let j = 0; j < allResults.length; j++){
-                if(e.percentage === undefined) {
-                  e.percentage = 0;
-                }
-              }
-            })
-    
-              //set revResults to a new array with parse and stringify so that I can have two seperate sorted arrays
-               revResults = JSON.parse(JSON.stringify(allResults))
-               revResults.sort((a, b) => ((a.percentage < b.percentage) ? -1 : (a.value > b.value) ? 1 : 0))
-               allResults.sort((a, b) => ((a.percentage > b.percentage) ? -1 : (a.value > b.value) ? 1 : 0))
-    
-    
-               
-            
-        
-    
-              allResultsVal.push(allResults)
-              RevResultsVal.push(revResults)
-               
-    
-               setAllResultsVal([...allResultsVal])
-               setRevResultsVal([...RevResultsVal])
-       
-               noLoadSet(true)
-               
-    
+            } else {
+              console.log('showdata is false');
+            }
+          };
       
-          
+          fetchData();
+        }, [showdata]);   
       
-      }
-      getAndCreateData()
-        }
-      
-        
-        }, [showdata])      
-
     return (
 <div className={styles_ws.section}> 
     <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
     <div className={styles_ws.tableContainer}>
-    {subs.map((item, index) => (
-        <div key={index} style={{ marginBottom: '20px', padding: '10px', border: '1px solid #ccc' }}>
-          <p><strong>Name:</strong> VALUE {item.unique}</p>
-
-        </div>
-      ))}
+    <table>
+      <tbody>
+        {noLoad === false ? (
+          <tr>
+            <td colSpan="3">Loading...</td>
+          </tr>
+        ) : (
+          allResultsVal &&
+          allResultsVal.map((item, i) => (
+            <tr className={i < 8 ? "" : "d-none"} key={i}>
+              <td className={i < 8 ? "" : "d-none"}>
+                {categories[item.type]}
+              </td>
+              <td className={i < 8 ? "" : "d-none"}>
+                {item.percentage}%
+              </td>
+              <td className={i < 8 ? "" : "d-none"}>
+                {item.value}
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table> 
     </div>
     <div className={styles_ws.dataUpdateMessage}>
         *Data updates on the screen after the first 10 submissions.
