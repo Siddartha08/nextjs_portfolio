@@ -314,6 +314,46 @@ function whoshouldgetitPage(props) {
     return (
 <div className={styles_ws.section}> 
     <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
+    <div className="card">
+      <div className="card-container">
+        <div className="card-content">
+          <div className="centered-content">
+            <div className="stretch-content">
+              <div className="features-section__item has-text-centered">
+                <a
+                  className="d-none d-md-block link-button"
+                  onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
+                >
+                  {categories[randomIndex1]}
+                </a>
+                <button
+                  onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
+                  className="d-lg-none d-xl-none d-md-none button"
+                >
+                  {categories[randomIndex1]}
+                </button>
+              </div>
+              <div className="center-content">
+                <div className="or-section">or</div>
+              </div>
+              <div className="stretch-content">
+                <div className="features-section__item has-text-centered">
+                  <a
+                    className="d-none d-md-block link-button"
+                    onClick={() => wrapper(tencount, [randomIndex2, randomIndex1])}
+                  >
+                    {categories[randomIndex2]}
+                  </a>
+                </div>
+              <div className="center-content">
+                {tencount} / 10
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div className={styles_ws.tableContainer}>
     <Table striped bordered hover>
       <thead>
@@ -352,7 +392,7 @@ function whoshouldgetitPage(props) {
         Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
     </div>
 </div>
-   
+  </div>
     );
   }
   export default whoshouldgetitPage;
