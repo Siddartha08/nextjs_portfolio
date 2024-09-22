@@ -80,7 +80,7 @@ function whoshouldgetitPage(props) {
     const [allResultsVal, setAllResultsVal] = useState([]);
     const [revResultsVal, setRevResultsVal] = useState([]);
     const [noLoad, setNoLoad] = useState(false);
-    const [showdata, setShowData] = useState(true)
+    const [showdata, setShowData] = useState(false)
     
     
   
@@ -319,36 +319,67 @@ function whoshouldgetitPage(props) {
         <div className="card-content">
           <div className="centered-content">
             <div className="stretch-content">
+              <div style={{  
+                display: "flex",
+                justifyContent: "center"}} 
+                className='format-content'>
               <div className="features-section__item has-text-centered">
-                <a
-                  className="d-none d-md-block link-button"
+                <a style={{
+                    display: "block",
+                    width: "250px",
+                    height: "100px",
+                    background: "#007bff",
+                    padding: "20px",
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    color: "white",
+                    fontWeight: "bold",
+                    lineHeight: "25px",
+                    
+              }} className="d-none d-md-block"
                   onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
                 >
                   {categories[randomIndex1]}
                 </a>
-                <button
+                <a
                   onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
                   className="d-lg-none d-xl-none d-md-none button"
                 >
                   {categories[randomIndex1]}
-                </button>
+                </a>
               </div>
               <div className="center-content">
-                <div className="or-section">or</div>
+                <div style={{margin: "10px"}} className="or-section">or</div>
               </div>
               <div className="stretch-content">
                 <div className="features-section__item has-text-centered">
-                  <a
-                    className="d-none d-md-block link-button"
+                  <a style={{
+                    display: "block",
+                    width: "250px",
+                    height: "100px",
+                    background: "#007bff",
+                    padding: "20px",
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    color: "white",
+                    fontWeight: "bold",
+                    lineHeight: "25px",
+              }}
+                    className="d-none d-md-block"
                     onClick={() => wrapper(tencount, [randomIndex2, randomIndex1])}
                   >
                     {categories[randomIndex2]}
                   </a>
                 </div>
-              <div className="center-content">
+                </div>
+                </div>
+              <div style = {{
+                width: "100%",
+                textAlign: "center"
+              }} className="center-content">
                 {tencount} / 10
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -391,7 +422,7 @@ function whoshouldgetitPage(props) {
     <div className={styles_ws.feedbackMessage}>
         Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
     </div>
-</div>
+    </div>
   </div>
     );
   }

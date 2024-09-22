@@ -17,6 +17,32 @@ padding: 20px;
 .feedbackMessage {
 padding: 20px; 
 }
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+div.or-section {
+  margin:10px
+}
+.format-content {
+  display: flex;
+  justify-content: center;
+
+}
+
+a.big-blue-button {
+  display: block;
+  width: 250px;
+  height: 100px;
+  background: #007bff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  line-height: 25px;
+
+}
 
 .hiddenRow {
     display: none;
@@ -46,7 +72,7 @@ padding: 20px;
     }
   }
 
-  .link-button {
+  /* .link-button {
     display: block;
     width: 250px;
     height: 100px;
@@ -57,7 +83,7 @@ padding: 20px;
     color: white;
     font-weight: bold;
     line-height: 25px;
-  }
+  } */
 
   .or-section {
     display: flex;
@@ -70,4 +96,20 @@ padding: 20px;
     display: flex;
     justify-content: center;
     height: 20px;
+  }
+  .big-blue-button {
+    display: block;
+    width: 250px;
+    height: 100px;
+    background: #007bff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+
+  }
+  .big-blue-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
   }
