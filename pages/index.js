@@ -7,6 +7,8 @@ import { portfolioItems } from '../data/portfolio';
 import { useAuth } from '../context/AuthContext';
 import styled from 'styled-components';
 import styles from '@/styles/Home.module.css';
+import ResumeSection from '../components/ResumeSection';
+
 
 const Container = styled.div`
   padding: 2rem;
@@ -108,7 +110,7 @@ export default function Home() {
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="#">Python Development+</a>
+          <a className="navbar-brand" href="#">Full Stack Development</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -149,7 +151,7 @@ export default function Home() {
         <div className="container">
           <h2>My Why</h2>
           <p>
-            Developing in Python has been a wonderful experience for me. Simple and elegant code can often be driven by some of the most efficient implementations of data structures and algorithms. This elegance is what drives me to continue to learn and grow as an engineer. I would love to work with an organization that values the same principles.
+          Engineering, in all its forms, has been a deeply rewarding journey for me. Whether it's full-stack web development, Python engineering, or data engineering, I find satisfaction in building systems that are both efficient and scalable. I'm driven by the desire to create solutions that are not only functional but also thoughtfully designed. I aim to continuously improve my craft and would love to contribute to an organization that values innovation and thoughtful engineering practices.
           </p>
         </div>
       </section>
@@ -257,16 +259,8 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      <section id="Resume" className="bg-light py-5">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-8 text-center">
-              <h2>My Resume</h2>
-              <a href="/download_resume" className="btn btn-primary btn-lg">Download PDF</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ResumeSection />
+
 
       {/* Footer */}
       <footer className="bg-dark text-white pt-4 pb-2">

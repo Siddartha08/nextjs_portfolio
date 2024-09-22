@@ -8,8 +8,8 @@ import { Container, Row, Col, Table, Section } from 'react-bootstrap';
 import { useAuth } from '../../../context/AuthContext';
 import { useCookies } from "react-cookie";
 import * as styles_ws from '/styles/WSGCaseStudy.module.css'; 
-
-
+import Footer from '../../../components/Footer';
+import ResumeSection from '/components/ResumeSection';
 
 
 
@@ -423,6 +423,8 @@ function whoshouldgetitPage(props) {
         Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
     </div>
     </div>
+    <ResumeSection/>
+    <Footer></Footer>
   </div>
     );
   }

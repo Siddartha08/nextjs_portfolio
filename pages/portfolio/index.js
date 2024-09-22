@@ -8,7 +8,7 @@ import LogoutButton from '../../components/LogoutButton';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer'; 
-
+import ResumeSection from '/components/ResumeSection';
 
 
 
@@ -193,6 +193,7 @@ export default function Portfolio() {
       This is the current date and time, as computed by Python:
       <script type="py" src='/main.py'/>
       </section>
+      <ResumeSection/>
       <Footer></Footer>
     </Container>
   );
