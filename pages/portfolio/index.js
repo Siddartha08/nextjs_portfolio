@@ -82,6 +82,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   margin-bottom: 1.5rem;
   border-radius: 8px; 
+  object-fit:contain
   &:hover { 
     img {
       filter: brightness(80%); // NEW: Added subtle darkening on hover
@@ -159,7 +160,8 @@ export default function Portfolio() {
         {portfolioItems.map(item => (
           <PortfolioCard key={item.id} onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
             <ImageContainer>
-              <Image src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+              <Image style={{objectFit: "cover"
+              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
             </ImageContainer>
             <ProjectTitle>{item.title}</ProjectTitle>
             <ProjectDescription>{item.description}</ProjectDescription>
@@ -193,6 +195,8 @@ export default function Portfolio() {
       This is the current date and time, as computed by Python:
       <script type="py" src='/main.py'/>
       </section>
+      <iframe src="mlstockprice.html" width="100%" height="600px"></iframe>
+
       <ResumeSection/>
       <Footer></Footer>
     </Container>

@@ -229,7 +229,7 @@ export default function Home() {
             {portfolioItems.map((item) => (
               <div key={item.id} className="col-lg-4 col-md-6 mb-4">
                 <div className="card h-100">
-                  <Image
+                  <Image style={{objectFit: 'cover'}}
                     src={item.image}
                     className="card-img-top"
                     alt={item.title}
@@ -247,9 +247,14 @@ export default function Home() {
                         </span>
                       ))}
                     </p>
+                    <div style={{display: "flex", flexDirection: "row", 
+                    alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
                     <Link href={item.link}>
                       <div className="btn btn-primary">View Project</div>
                     </Link>
+                    <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
+                    </p>
+                    </div>
                   </div>
                 </div>
               </div>

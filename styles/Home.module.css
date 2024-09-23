@@ -271,3 +271,9 @@ a.secondary {
     filter: invert();
   }
 }
+
+.date { 
+  font-size: 1em; 
+  color: #777; 
+  text-align: right; /* Or left, depending on your preference */
+}
