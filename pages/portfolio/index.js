@@ -8,8 +8,8 @@ import LogoutButton from '../../components/LogoutButton';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer'; 
-
-
+import ResumeSection from '/components/ResumeSection';
+import Navbar from '../../components/Navbar';
 
 
 const pyscript_val = `
@@ -82,6 +82,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   margin-bottom: 1.5rem;
   border-radius: 8px; 
+  object-fit:contain
   &:hover { 
     img {
       filter: brightness(80%); // NEW: Added subtle darkening on hover
@@ -150,8 +151,15 @@ export default function Portfolio() {
 
   return (
     <Container>
+      <Navbar 
+  pageTitle="Portfolio"  // Set the title for this page
+  navItems={[
+    { href: '/', text: 'Home' },
+    { href: '#Resume', text: 'Resume' }
+  ]} 
+/>
       <Header>      
-      <Title>Portfolio</Title>
+      <Title>Portfolio Pieces</Title>
       <LogoutButton />
       </Header>
 
@@ -159,7 +167,8 @@ export default function Portfolio() {
         {portfolioItems.map(item => (
           <PortfolioCard key={item.id} onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
             <ImageContainer>
-              <Image src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+              <Image style={{objectFit: "cover"
+              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
             </ImageContainer>
             <ProjectTitle>{item.title}</ProjectTitle>
             <ProjectDescription>{item.description}</ProjectDescription>
@@ -193,6 +202,8 @@ export default function Portfolio() {
       This is the current date and time, as computed by Python:
       <script type="py" src='/main.py'/>
       </section>
+
+      <ResumeSection/>
       <Footer></Footer>
     </Container>
   );

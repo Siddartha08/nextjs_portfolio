@@ -8,8 +8,9 @@ import { Container, Row, Col, Table, Section } from 'react-bootstrap';
 import { useAuth } from '../../../context/AuthContext';
 import { useCookies } from "react-cookie";
 import * as styles_ws from '/styles/WSGCaseStudy.module.css'; 
-
-
+import Footer from '../../../components/Footer';
+import Navbar from '../../../components/Navbar';
+import ResumeSection from '../../../components/ResumeSection';
 
 
 
@@ -80,7 +81,7 @@ function whoshouldgetitPage(props) {
     const [allResultsVal, setAllResultsVal] = useState([]);
     const [revResultsVal, setRevResultsVal] = useState([]);
     const [noLoad, setNoLoad] = useState(false);
-    const [showdata, setShowData] = useState(true)
+    const [showdata, setShowData] = useState(false)
     
     
   
@@ -313,7 +314,93 @@ function whoshouldgetitPage(props) {
       
     return (
 <div className={styles_ws.section}> 
-    <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
+<Navbar 
+  pageTitle="Who Should Get it?"  // Set the title for this page
+  navItems={[
+    { href: '/', text: 'Home' },
+    { href: '#Resume', text: 'Resume' }
+  ]} 
+/>
+    <h1 className={styles_ws.title}>Case Study: Who Should Get the Vaccine First</h1>
+    {/* put descriptive content here */}
+    <div className="card">
+      <div className="card-container" 
+      style={{
+        marginTop: "50px",
+        marginBottom: "30px"
+        
+      }} >
+        <div className="card-content">
+          <div className="centered-content">
+            <div className="stretch-content">
+              <div style={{  
+                display: "flex",
+                justifyContent: "center"}} 
+                className='format-content'>
+              <div className="features-section__item has-text-centered">
+                <a style={{
+                    display: "block",
+                    width: "250px",
+                    height: "100px",
+                    background: "#007bff",
+                    padding: "30px",
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    color: "white",
+                    fontWeight: "bold",
+                    lineHeight: "25px",
+                    
+              }} className="d-none d-md-block"
+                  onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
+                >
+                  {categories[randomIndex1]}
+                </a>
+                <a
+                  onClick={() => wrapper(tencount, [randomIndex1, randomIndex2])}
+                  className="d-lg-none d-xl-none d-md-none button"
+                >
+                  {categories[randomIndex1]}
+                </a>
+              </div>
+              <div className="center-content">
+                <div style={{margin: "10px",
+                  padding: "30px"
+                }} className="or-section">or</div>
+              </div>
+              <div className="stretch-content">
+                <div className="features-section__item has-text-centered">
+                  <a style={{
+                    display: "block",
+                    width: "250px",
+                    height: "100px",
+                    background: "#007bff",
+                    padding: "30px",
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    color: "white",
+                    fontWeight: "bold",
+                    lineHeight: "25px",
+              }}
+                    className="d-none d-md-block"
+                    onClick={() => wrapper(tencount, [randomIndex2, randomIndex1])}
+                  >
+                    {categories[randomIndex2]}
+                  </a>
+                </div>
+                </div>
+                </div>
+              <div style = {{
+                width: "100%",
+                textAlign: "center"
+              }} className="center-content">
+                {tencount} / 10
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div className={styles_ws.tableContainer}>
     <Table striped bordered hover>
       <thead>
@@ -348,11 +435,10 @@ function whoshouldgetitPage(props) {
     <div className={styles_ws.dataUpdateMessage}>
         *Data updates on the screen after the first 10 submissions.
     </div>
-    <div className={styles_ws.feedbackMessage}>
-        Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
     </div>
-</div>
-   
+    <ResumeSection/>
+    <Footer></Footer>
+  </div>
     );
   }
   export default whoshouldgetitPage;
