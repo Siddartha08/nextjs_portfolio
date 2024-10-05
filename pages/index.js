@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import styled from 'styled-components';
 import styles from '@/styles/Home.module.css';
 import ResumeSection from '../components/ResumeSection';
+import Navbar from '../components/Navbar';
 
 
 const Container = styled.div`
@@ -108,34 +109,16 @@ export default function Home() {
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div className="container">
-          <a className="navbar-brand" href="#">Full Stack Development</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="#intro">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#about">About Me</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#skills">Skills</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#portfolio">Portfolio</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#Resume">Resume</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar 
+  pageTitle="Full Stack Development"  // Set the title for this page
+  navItems={[
+    { href: '#intro', text: 'Home' },
+    { href: '#about', text: 'About Me' },
+    { href: '#skills', text: 'Skills' },
+    { href: '#portfolio', text: 'Portfolio' },
+    { href: '#Resume', text: 'Resume' }
+  ]} 
+/>
       {/* Intro Section */}
       <section id="intro" className={`${styles.introSection}`}>
         <div className="container">
@@ -229,13 +212,19 @@ export default function Home() {
             {portfolioItems.map((item) => (
               <div key={item.id} className="col-lg-4 col-md-6 mb-4">
                 <div className="card h-100">
-                  <Image style={{objectFit: 'cover'}}
+                  {item.pimage ? (
+                   <div className={item.frosted ? 'frosted-image': ''}> 
+                    <Image style={{objectFit: 'cover'}}
                     src={item.image}
                     className="card-img-top"
                     alt={item.title}
                     width={600}
                     height={400}
                   />
+                  </div>
+                  ): null}
+                  
+                  
                   <div className="card-body">
                     <h5 className="card-title">{item.title}</h5>
                     <p className="card-text">{item.description}</p>

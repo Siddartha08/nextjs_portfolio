@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer'; 
 import ResumeSection from '/components/ResumeSection';
-
+import Navbar from '../../components/Navbar';
 
 
 const pyscript_val = `
@@ -151,8 +151,15 @@ export default function Portfolio() {
 
   return (
     <Container>
+      <Navbar 
+  pageTitle="Portfolio"  // Set the title for this page
+  navItems={[
+    { href: '/', text: 'Home' },
+    { href: '#Resume', text: 'Resume' }
+  ]} 
+/>
       <Header>      
-      <Title>Portfolio</Title>
+      <Title>Portfolio Pieces</Title>
       <LogoutButton />
       </Header>
 
@@ -195,7 +202,6 @@ export default function Portfolio() {
       This is the current date and time, as computed by Python:
       <script type="py" src='/main.py'/>
       </section>
-      <iframe src="mlstockprice.html" width="100%" height="600px"></iframe>
 
       <ResumeSection/>
       <Footer></Footer>

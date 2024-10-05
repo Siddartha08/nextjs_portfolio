@@ -9,7 +9,8 @@ import { useAuth } from '../../../context/AuthContext';
 import { useCookies } from "react-cookie";
 import * as styles_ws from '/styles/WSGCaseStudy.module.css'; 
 import Footer from '../../../components/Footer';
-import ResumeSection from '/components/ResumeSection';
+import Navbar from '../../../components/Navbar';
+import ResumeSection from '../../../components/ResumeSection';
 
 
 
@@ -313,9 +314,22 @@ function whoshouldgetitPage(props) {
       
     return (
 <div className={styles_ws.section}> 
-    <h1 className={styles_ws.title}>Who Should Get It First? Case Study</h1>
+<Navbar 
+  pageTitle="Who Should Get it?"  // Set the title for this page
+  navItems={[
+    { href: '/', text: 'Home' },
+    { href: '#Resume', text: 'Resume' }
+  ]} 
+/>
+    <h1 className={styles_ws.title}>Case Study: Who Should Get the Vaccine First</h1>
+    {/* put descriptive content here */}
     <div className="card">
-      <div className="card-container">
+      <div className="card-container" 
+      style={{
+        marginTop: "50px",
+        marginBottom: "30px"
+        
+      }} >
         <div className="card-content">
           <div className="centered-content">
             <div className="stretch-content">
@@ -329,7 +343,7 @@ function whoshouldgetitPage(props) {
                     width: "250px",
                     height: "100px",
                     background: "#007bff",
-                    padding: "20px",
+                    padding: "30px",
                     textAlign: "center",
                     borderRadius: "5px",
                     color: "white",
@@ -349,7 +363,9 @@ function whoshouldgetitPage(props) {
                 </a>
               </div>
               <div className="center-content">
-                <div style={{margin: "10px"}} className="or-section">or</div>
+                <div style={{margin: "10px",
+                  padding: "30px"
+                }} className="or-section">or</div>
               </div>
               <div className="stretch-content">
                 <div className="features-section__item has-text-centered">
@@ -358,7 +374,7 @@ function whoshouldgetitPage(props) {
                     width: "250px",
                     height: "100px",
                     background: "#007bff",
-                    padding: "20px",
+                    padding: "30px",
                     textAlign: "center",
                     borderRadius: "5px",
                     color: "white",
@@ -418,9 +434,6 @@ function whoshouldgetitPage(props) {
     </div>
     <div className={styles_ws.dataUpdateMessage}>
         *Data updates on the screen after the first 10 submissions.
-    </div>
-    <div className={styles_ws.feedbackMessage}>
-        Questions or feedback? Email us at whoshouldgetitfirst@gmail.com
     </div>
     </div>
     <ResumeSection/>
