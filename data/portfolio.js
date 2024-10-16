@@ -19,7 +19,7 @@ export const portfolioItems = [
       { type: 'p', content: 'To illustrate my compentancy with simple model training and execution. I work with mortality models in my current role as a Data Engineer. The models I work with are almost all tabular in design which do not require a third party library to necessarily use.' },
       {type: 'p', content: 'Please let me know if you have any questions'}
     ],
-    frosted: true
+    frosted: false
   },
   {
     id: 'whoshouldgetit', 

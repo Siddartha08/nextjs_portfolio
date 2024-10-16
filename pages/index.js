@@ -11,21 +11,31 @@ import ResumeSection from '../components/ResumeSection';
 import Navbar from '../components/Navbar';
 
 
+// const Container = styled.div`
+//   padding: 2rem;
+// `;
+
 const Container = styled.div`
-  padding: 2rem;
-`;
+    padding
+  : 2rem 2rem; // MODIFIED: Added more horizontal padding
+  display: flex; // NEW: Make container a flexbox
+  flex-direction: column; // NEW: Stack elements vertically
+  min-height: 100vh; // NEW: Ensure full viewport height
+  `;
 
 const PortfolioGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1rem;
+  margin: 20px;
+  padding: 3rem;
 `;
 
 const PortfolioCard = styled.div`
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 `;
 
 const PasswordModal = styled.div`
@@ -45,6 +55,47 @@ const PasswordBox = styled.div`
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
+`;
+
+const ViewProjectButton = styled.a`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff; /* Blue button */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 250px; // MODIFIED: Increased height 
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border-radius: 8px; 
+  object-fit:contain
+  &:hover { 
+    img {
+      filter: brightness(80%); // NEW: Added subtle darkening on hover
+    }
+  }
+`;
+
+const ProjectTitle = styled.h3`
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  font-weight: 500; // MODIFIED: Slightly bolder font weight
+`;
+
+const ProjectDescription = styled.p`
+  color: #6c757d;
+  font-size: 1rem; // MODIFIED: Slightly larger font size
+  line-height: 1.6; // MODIFIED: Increased line height for better readability
 `;
 
 export default function Home() {
@@ -251,7 +302,26 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <Container className="container" style={{padding: "0px"}}>
+      <PortfolioGrid style={{margin: "0px", padding:"1rem"}} className="container">
+        {portfolioItems.map(item => (
+          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md mb-4" onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
+            
+            
+            
+            <ImageContainer>
+              <Image style={{objectFit: "cover"
+              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+            </ImageContainer>
+            <ProjectTitle>{item.title}</ProjectTitle>
+            <ProjectDescription>{item.description}</ProjectDescription>
+            <ViewProjectButton href={item.link} target="_blank" rel="noopener noreferrer">
+              View Project
+            </ViewProjectButton>
+          </PortfolioCard>
+        ))}
+      </PortfolioGrid>
+      </Container>
       {/* Resume Section */}
       <ResumeSection />
 
