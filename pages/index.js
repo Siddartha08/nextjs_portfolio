@@ -256,30 +256,24 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className={`${styles.portfolioSection}`}>
-        <div className="container">
-          <h2>Portfolio</h2>
-          <div className="row">
-            {portfolioItems.map((item) => (
-              <div key={item.id} className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                  {item.pimage ? (
-                   <div className={item.frosted ? 'frosted-image': ''}> 
-                    <Image style={{objectFit: 'cover'}}
-                    src={item.image}
-                    className="card-img-top"
-                    alt={item.title}
-                    width={600}
-                    height={400}
-                  />
-                  </div>
-                  ): null}
-                  
-                  
-                  <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
-                    <p className="card-text">{item.description}</p>
-                    <p className="card-text">
+
+      <Container className="container" style={{padding: "0px"}}>
+      <h2>Portfolio</h2>
+      <PortfolioGrid style={{margin: "0px", padding:"1rem"}} className="container">
+        {portfolioItems.map(item => (
+          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md" onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
+            
+            
+            
+            {item.pimage ? (
+              <ImageContainer>
+              <Image style={{objectFit: "cover"
+              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+            </ImageContainer>
+            ): null}
+            <ProjectTitle>{item.title}</ProjectTitle>
+            <ProjectDescription>{item.description}</ProjectDescription>
+            <p className="card-text">
                       Technologies used:{' '}
                       {item.technologies.map((tech, index) => (
                         <span key={index} className="badge bg-secondary me-1">
@@ -287,37 +281,14 @@ export default function Home() {
                         </span>
                       ))}
                     </p>
-                    <div style={{display: "flex", flexDirection: "row", 
-                    alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
-                    <Link href={item.link}>
-                      <div className="btn btn-primary">View Project</div>
-                    </Link>
-                    <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
-                    </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <Container className="container" style={{padding: "0px"}}>
-      <PortfolioGrid style={{margin: "0px", padding:"1rem"}} className="container">
-        {portfolioItems.map(item => (
-          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md mb-4" onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
-            
-            
-            
-            <ImageContainer>
-              <Image style={{objectFit: "cover"
-              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
-            </ImageContainer>
-            <ProjectTitle>{item.title}</ProjectTitle>
-            <ProjectDescription>{item.description}</ProjectDescription>
+            <div style={{display: "flex", flexDirection: "row", 
+            alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
             <ViewProjectButton href={item.link} target="_blank" rel="noopener noreferrer">
               View Project
             </ViewProjectButton>
+            <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
+                    </p>
+            </div>
           </PortfolioCard>
         ))}
       </PortfolioGrid>

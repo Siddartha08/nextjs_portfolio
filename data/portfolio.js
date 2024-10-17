@@ -4,7 +4,7 @@ export const portfolioItems = [
   {
     id: 'dataquality', 
     title: 'Data Quality',
-    description: 'Using python perform data quality checks on pipelines', // Add a brief description
+    description: 'Built a Data Quality Engine using python to orchestrate checks across three different databases', // Add a brief description
     technologies: ['Python', 'Sqlalchemy', 'Snowflake', 'Pandas', 'OOP'], 
     image: '/images/coresquare.png', // Replace with the actual image path
     pimage: '/images/Corebridge.png',

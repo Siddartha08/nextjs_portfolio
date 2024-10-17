@@ -3,8 +3,35 @@ import { portfolioItems } from '@/data/portfolio';
 import Image from 'next/image';
 import withAuth from '@/components/withAuth';
 import React from 'react';
-import { Card, CardContent } from '@mui/material'
+import { Card, CardContent, Box, useTheme } from '@mui/material'
 import Navbar from '../../../components/Navbar';
+import Footer from '../../../components/Footer'; 
+import ResumeSection from '/components/ResumeSection';
+
+
+function BannerImage() {
+  const theme = useTheme()
+  return (
+    <Box src='/images/Corebridge.png'
+      sx={{
+        backgroundImage: `url('/images/Corebridge.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '500px', // Adjust height as needed
+        width: '100%',
+        display: 'flex', // For content alignment
+        alignItems: 'center', // For content alignment
+        justifyContent: 'center', // For content alignment
+        [theme.breakpoints.down('sm')]: {
+          backgroundImage: `url('/images/coresquare.png')`, // Image for small screens
+          height: '200px'
+        },
+      }}
+    >
+      {/* Add any content you want to overlay on the banner image here */}
+    </Box>
+  );
+}
 
 const arch_code = `
 # These code snippets are illustrative examples.
@@ -160,7 +187,7 @@ class DataQualityCheck:
   const syntaxColors = {
     comment: { color: '#6A9955' },  // Grey
     keyword: { color: '#0000FF' },  // Blue
-    className: { color: '#795E26' }, // Purple
+    className: { color: '#800080' }, // Purple
     string: { color: '#008000' },   // Green
     error: { color: '#FF0000' },    // Red
     fString: { color: '#008080' }   // teal
@@ -195,7 +222,7 @@ class DataQualityCheck:
       });
 
       // Class names
-      line.replace(/(DBFactory|OracleConnection|SQLServerConnection|SnowflakeConnection)/g, (match, p1, offset) => {
+      line.replace(/(DBFactory|DataQualityCheck|load_checks|create_connection|run_checks|OracleConnection|SQLServerConnection|SnowflakeConnection|DataQualityEngine|self)/g, (match, p1, offset) => {
         addPart(offset, {});
         addPart(offset + match.length, syntaxColors.className);
       });
@@ -243,9 +270,9 @@ const dataqualityPage = () => {
     { href: '#Resume', text: 'Resume' }
   ]} 
 />
-<p className="mb-4">
-       </p>
-<p className="mb-4">
+
+    {BannerImage()}
+    <p className="mb-4">
          </p>
     <h1 className="text-3xl font-bold mb-4">Data Quality Case Study: Ensuring Accurate Data for Actuarial Modeling</h1>
     <h6 ><strong>By: JP Emery Lead Engineer </strong></h6>
@@ -261,13 +288,13 @@ const dataqualityPage = () => {
       <strong>Note:</strong> <em>Due to proprietary considerations, the code snippets provided in this case study are illustrative examples intended to demonstrate the concepts and techniques employed. They do not represent the actual code used in the project.</em>
     </p>
 
-    <h2 className="text-2xl font-bold mt-6 mb-2">Background</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">1. Background</h2>
     <p className="mb-4">
       Our Actuarial Data Team is responsible for preparing data for model stakeholders. Data quality is not a new issue within large organizations there are many mature softwares around data quality, governance, and lineage, but
        due to budget constraints, we couldn't adopt new tools for data validation. Instead, we engineered a custom solution using Python, leveraging object-oriented principles to build an extensible and efficient data quality engine.
     </p>
 
-    <h2 className="text-2xl font-bold mt-6 mb-2">Objectives</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">2. Objectives</h2>
     <ul className="list-disc pl-5 mb-4">
       <li>Validate data before model runs to avoid costly errors.</li>
       <li>Build a cost-effective solution without additional tooling.</li>
@@ -276,7 +303,7 @@ const dataqualityPage = () => {
       <li>Minimize data transfer costs by reducing the amount of data moved between servers.</li>
     </ul>
 
-    <h2 className="text-2xl font-bold mt-6 mb-2">Methodology</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">3. Methodology</h2>
     <p className="mb-4">
       <strong>Data Quality Checks:</strong> We implemented various types of data quality checks to ensure data integrity and reliability before model execution. The main types of checks included:
     </p>
@@ -289,7 +316,7 @@ const dataqualityPage = () => {
       <strong>Architectural Design:</strong> To build a flexible and scalable data quality engine, we employed object-oriented programming techniques.
     </p>
     <ul className="list-disc pl-5 mb-4">
-      <li><strong>Classes and Inheritance:</strong> We used Python classes to encapsulate data quality checks, allowing for easy extension and maintenance.</li>
+      <li><strong>Classes and Inheritance:</strong> We used Python classes to encapsulate data quality checks, allowing for easy extension and testing</li>
       <li><strong>Factory Pattern:</strong> Implemented a factory structure to dynamically create different database connections based on the database type.</li>
       <li><strong>Database Abstraction:</strong> Passed the database connection factory to a base class, enabling the data quality engine to interact seamlessly with different databases.</li>
     </ul>
@@ -302,7 +329,9 @@ const dataqualityPage = () => {
         </pre>
       </CardContent>
     </Card>
+    <h4>Types of checks and how to implement
 
+    </h4>
     <p className="mb-4">
       We implemented various types of data quality checks to ensure data integrity and reliability before model execution. The main types of checks included Valid Values Checks for Completeness, Range Checks for Numerical Values, and Period-over-Period Checks for Fact Fields.
     </p>
@@ -315,11 +344,12 @@ const dataqualityPage = () => {
         </pre>
       </CardContent>
     </Card>
-    <h2 className="text-2xl font-bold mt-6 mb-2">Optimizing Data Processing</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">4. Optimizing Data Processing</h2>
     <br></br>
     <h4>Minimizing Data Transfer</h4> 
     <p className="mb-4">
-      To reduce data transfer costs and improve performance: 
+      while building we needed to be conscience of the amount of data transfered between the engine and the databases. This was important not just to reduce data transfer costs but to also limit the amount of data in memory at any one point in time
+      We accomplished this through the techniques below.
     </p>
     <ul className="list-disc pl-5 mb-4">
       <li><strong>Selective Data Retrieval</strong> Designed queries to return results only when failures or anomalies are detected.</li>
@@ -332,27 +362,26 @@ const dataqualityPage = () => {
       <li><strong>Chunking Data</strong> Designed queries to return results only when failures or anomalies are detected.</li>
       <li><strong>Server-side Computation:</strong> Performed computations and validations on the database server whenever possible to minimize data movement.</li>
     </ul>
-    <h2 className="text-2xl font-bold mt-6 mb-2">Results</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">5. Delivery</h2>
     <p className="mb-4">
-      Our Python-based data quality engine went from POC to first model coverage in 3 months. 
-    </p>
+      Initial delivery took place over 3 months, checks were aggregated into a dashboard for operations analysis. Future models just need to have a tabular list of checks added to a list of available checks to run</p>
 
-    <h2 className="text-2xl font-bold mt-6 mb-2">Challenges and Solutions</h2>
+    <h2 className="text-2xl font-bold mt-6 mb-2">Other Considerations</h2>
     <p className="mb-4">
-      We faced budget constraints, multiple database connections, and evolving requirements, all of which we tackled through creative solutions such as in-house development, the use of a factory pattern, and the creation of a configuration-driven, extensible system.
-    </p>
+      In detailing the work above its easy to gloss over some important technical specifications and implemetation issues observed
+          </p>
+    <ul className="list-disc pl-5 mb-4">
+      <li><strong>Persistency:</strong>We wanted to make sure the application when implemented could watch to run the checks when necessary. This functionality of the code is not illustrated here.</li>
+      <li><strong>Environment Management:</strong> I built a Conda environment that worked for the necessary database libraries. that work is not shown here.</li>
+      <li><strong>Dynamic Connection Management:</strong>The code does not show that if an engine is created it is used immediately then the connection is closed. some libraries leave connections open with just an engine creation. Those orphaned connections lead to issues with our DBAs.</li>
+    </ul>
 
     <h2 className="text-2xl font-bold mt-6 mb-2">Conclusion</h2>
     <p className="mb-4">
-      By leveraging Python's object-oriented features and efficient data processing techniques, we built a robust, configuration-driven data quality engine that meets our actuarial modeling needs without incurring additional costs.
-    </p>
-
-    <h2 className="text-2xl font-bold mt-6 mb-2">Future Enhancements</h2>
-    <ul className="list-disc pl-5 mb-4">
-      <li>Integration with CI/CD Pipelines.</li>
-      <li>Alerting Mechanisms for notifying stakeholders.</li>
-      <li>Developing a dashboard for monitoring data quality metrics over time.</li>
-    </ul>
+      In the span of time a team might spend negotiating and onboarding on to a new 3rd party software for data quality we were able to build a POC that accomplished all the goals around data quality the department had.
+      Future use cases expand the Data quality engine into different models. Onboarding is as easy as specifying new rules in tabular format to add to a running list.</p>
+      <ResumeSection/>
+  <Footer></Footer>
   </div>
   );
 };
