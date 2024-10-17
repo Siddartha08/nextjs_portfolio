@@ -146,12 +146,21 @@ export default function Home() {
     setShowModal(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, item) => { // Add 'item' as a parameter
+    console.log('submit was clicked')
     e.preventDefault();
     const success = login(password);
     if (success) {
       setShowModal(false);
-      router.push(`/portfolio/${selectedPortfolio}`);
+      
+      // Dynamically route based on item.link
+      if (item && item.link) {
+        // If item.link is present, open it in a new tab
+        window.open(item.link, '_blank', 'noopener noreferrer');
+      } else {
+        // Otherwise, use the default routing logic
+        router.push(`/portfolio${selectedPortfolio}`); 
+      }
     } else {
       alert('Incorrect password');
     }
@@ -261,7 +270,7 @@ export default function Home() {
       <h2>Portfolio</h2>
       <PortfolioGrid style={{margin: "0px", padding:"1rem"}} className="container">
         {portfolioItems.map(item => (
-          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md" onClick={() => handleCardClick(item.id)} style={{ cursor: 'pointer' }}>
+          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md" style={{ cursor: 'pointer' }}>
             
             
             
@@ -283,7 +292,7 @@ export default function Home() {
                     </p>
             <div style={{display: "flex", flexDirection: "row", 
             alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
-            <ViewProjectButton href={item.link} target="_blank" rel="noopener noreferrer">
+            <ViewProjectButton href={item.link} onClick={(e) => handleSubmit(e, item)}>
               View Project
             </ViewProjectButton>
             <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 

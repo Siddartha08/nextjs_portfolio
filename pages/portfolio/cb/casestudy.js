@@ -387,4 +387,4 @@ const dataqualityPage = () => {
 };
 
 // Wrap the page with the `withAuth` HOC to protect it
-export default dataqualityPage;
+export default withAuth(dataqualityPage);

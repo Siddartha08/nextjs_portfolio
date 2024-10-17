@@ -1,25 +1,29 @@
 // components/withAuth.js
-import { useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useRouter } from 'next/router';
-
+import React, { useState } from 'react';
+import PasswordModal from './PasswordModal';
 const withAuth = (WrappedComponent) => {
-  return (props) => {
-    const { authenticated } = useAuth();
-    const router = useRouter();
-
-    useEffect(() => {
-      if (!authenticated) {
-        router.push('/');
+  const WithAuth = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [showModal, setShowModal] = useState(true); // Initially show modal
+    const handlePasswordSubmit = (password) => {
+      // Check password against your authentication logic
+      if (password === 'shadowIT') { 
+        setIsAuthenticated(true);
+        setShowModal(false);
+      } else {
+        alert('Incorrect password');
       }
-    }, [authenticated, router]);
-
-    if (!authenticated) {
-      return null; // Or a loading spinner
-    }
-
-    return <WrappedComponent {...props} />;
+    };
+    return (
+      <>
+        {isAuthenticated ? (
+          <WrappedComponent />
+        ) : (
+          <PasswordModal isOpen={showModal} onClose={handlePasswordSubmit} />
+        )}
+      </>
+    );
   };
+  return WithAuth;
 };
-
 export default withAuth;
