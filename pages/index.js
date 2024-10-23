@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const PortfolioGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   margin: 20px;
   padding: 3rem;
@@ -141,10 +141,21 @@ export default function Home() {
   }, [charIndex, currentFieldIndex]); // Rerun effect whenever charIndex or currentFieldIndex changes
 
 
-  const handlePortfolioClick = (id) => {
-    setSelectedPortfolio(id);
-    setShowModal(true);
-  };
+  // const handlePortfolioClick = (id) => {
+  //   setSelectedPortfolio(id);
+  //   if (/* condition to bypass modal */) {
+  //     handleSubmit(null, item); // Pass 'item' to handleSubmit
+  // } else {
+  //     setShowModal(true);
+  // }
+  // };
+
+  const handleCardClick = (item) => {
+    if (item.protected) { // or a similar condition
+        setSelectedPortfolio(item.id);
+        setShowModal(true);
+    }
+};
 
   const handleSubmit = (e, item) => { // Add 'item' as a parameter
     console.log('submit was clicked')
@@ -154,16 +165,16 @@ export default function Home() {
       setShowModal(false);
       
       // Dynamically route based on item.link
-      if (item && item.link) {
+    if (item && item.link) {
         // If item.link is present, open it in a new tab
-        window.open(item.link, '_blank', 'noopener noreferrer');
-      } else {
-        // Otherwise, use the default routing logic
-        router.push(`/portfolio${selectedPortfolio}`); 
-      }
+        window.open(item.link);
     } else {
+        router.push(`/portfolio${selectedPortfolio}`);
+    }
+    } else {  
       alert('Incorrect password');
     }
+    
   };
 
   return (
@@ -292,7 +303,7 @@ export default function Home() {
                     </p>
             <div style={{display: "flex", flexDirection: "row", 
             alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
-            <ViewProjectButton href={item.link} onClick={(e) => handleSubmit(e, item)}>
+            <ViewProjectButton href={item.link} onClick={() => handleCardClick(item)}>
               View Project
             </ViewProjectButton>
             <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
