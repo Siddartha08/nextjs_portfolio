@@ -11,21 +11,31 @@ import ResumeSection from '../components/ResumeSection';
 import Navbar from '../components/Navbar';
 
 
+// const Container = styled.div`
+//   padding: 2rem;
+// `;
+
 const Container = styled.div`
-  padding: 2rem;
-`;
+    padding
+  : 2rem 2rem; // MODIFIED: Added more horizontal padding
+  display: flex; // NEW: Make container a flexbox
+  flex-direction: column; // NEW: Stack elements vertically
+  min-height: 100vh; // NEW: Ensure full viewport height
+  `;
 
 const PortfolioGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
+  margin: 20px;
+  padding: 3rem;
 `;
 
 const PortfolioCard = styled.div`
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 `;
 
 const PasswordModal = styled.div`
@@ -45,6 +55,47 @@ const PasswordBox = styled.div`
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
+`;
+
+const ViewProjectButton = styled.a`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff; /* Blue button */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 250px; // MODIFIED: Increased height 
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border-radius: 8px; 
+  object-fit:contain
+  &:hover { 
+    img {
+      filter: brightness(80%); // NEW: Added subtle darkening on hover
+    }
+  }
+`;
+
+const ProjectTitle = styled.h3`
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  font-weight: 500; // MODIFIED: Slightly bolder font weight
+`;
+
+const ProjectDescription = styled.p`
+  color: #6c757d;
+  font-size: 1rem; // MODIFIED: Slightly larger font size
+  line-height: 1.6; // MODIFIED: Increased line height for better readability
 `;
 
 export default function Home() {
@@ -90,20 +141,40 @@ export default function Home() {
   }, [charIndex, currentFieldIndex]); // Rerun effect whenever charIndex or currentFieldIndex changes
 
 
-  const handlePortfolioClick = (id) => {
-    setSelectedPortfolio(id);
-    setShowModal(true);
-  };
+  // const handlePortfolioClick = (id) => {
+  //   setSelectedPortfolio(id);
+  //   if (/* condition to bypass modal */) {
+  //     handleSubmit(null, item); // Pass 'item' to handleSubmit
+  // } else {
+  //     setShowModal(true);
+  // }
+  // };
 
-  const handleSubmit = (e) => {
+  const handleCardClick = (item) => {
+    if (item.protected) { // or a similar condition
+        setSelectedPortfolio(item.id);
+        setShowModal(true);
+    }
+};
+
+  const handleSubmit = (e, item) => { // Add 'item' as a parameter
+    console.log('submit was clicked')
     e.preventDefault();
     const success = login(password);
     if (success) {
       setShowModal(false);
-      router.push(`/portfolio/${selectedPortfolio}`);
+      
+      // Dynamically route based on item.link
+    if (item && item.link) {
+        // If item.link is present, open it in a new tab
+        window.open(item.link);
     } else {
+        router.push(`/portfolio${selectedPortfolio}`);
+    }
+    } else {  
       alert('Incorrect password');
     }
+    
   };
 
   return (
@@ -205,30 +276,24 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className={`${styles.portfolioSection}`}>
-        <div className="container">
-          <h2>Portfolio</h2>
-          <div className="row">
-            {portfolioItems.map((item) => (
-              <div key={item.id} className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                  {item.pimage ? (
-                   <div className={item.frosted ? 'frosted-image': ''}> 
-                    <Image style={{objectFit: 'cover'}}
-                    src={item.image}
-                    className="card-img-top"
-                    alt={item.title}
-                    width={600}
-                    height={400}
-                  />
-                  </div>
-                  ): null}
-                  
-                  
-                  <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
-                    <p className="card-text">{item.description}</p>
-                    <p className="card-text">
+
+      <Container className="container" style={{padding: "0px"}}>
+      <h2>Portfolio</h2>
+      <PortfolioGrid style={{margin: "0px", padding:"1rem"}} className="container">
+        {portfolioItems.map(item => (
+          <PortfolioCard key={item.id} className="h-100 col-lg-12 col-md" style={{ cursor: 'pointer' }}>
+            
+            
+            
+            {item.pimage ? (
+              <ImageContainer>
+              <Image style={{objectFit: "cover"
+              }} src={item.image} alt={item.title} layout="fill" objectFit="cover" />
+            </ImageContainer>
+            ): null}
+            <ProjectTitle>{item.title}</ProjectTitle>
+            <ProjectDescription>{item.description}</ProjectDescription>
+            <p className="card-text">
                       Technologies used:{' '}
                       {item.technologies.map((tech, index) => (
                         <span key={index} className="badge bg-secondary me-1">
@@ -236,22 +301,18 @@ export default function Home() {
                         </span>
                       ))}
                     </p>
-                    <div style={{display: "flex", flexDirection: "row", 
-                    alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
-                    <Link href={item.link}>
-                      <div className="btn btn-primary">View Project</div>
-                    </Link>
-                    <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
+            <div style={{display: "flex", flexDirection: "row", 
+            alignItems:"center", textAlign:"right", justifyContent:"space-between"}}>
+            <ViewProjectButton href={item.link} onClick={() => handleCardClick(item)}>
+              View Project
+            </ViewProjectButton>
+            <p className="date badge bg-secondary" style={{marginBottom: "0px"}}>                       Date: {item.date} 
                     </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+            </div>
+          </PortfolioCard>
+        ))}
+      </PortfolioGrid>
+      </Container>
       {/* Resume Section */}
       <ResumeSection />
 

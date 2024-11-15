@@ -21,7 +21,7 @@ const pyscript_val = `
 
 const Container = styled.div`
     padding
-  : 2rem 4rem; // MODIFIED: Added more horizontal padding
+  : 2rem 2rem; // MODIFIED: Added more horizontal padding
     background-color: #f8f9fa; 
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 
   0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10h20v20H10V10z' fill='%23ddd' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"); // NEW: Added subtle background pattern
@@ -30,9 +30,9 @@ const Container = styled.div`
   min-height: 100vh; // NEW: Ensure full viewport height
   `;
 
-const Header = styled.div` // NEW: Container for title and button
+const Header = styled.div` 
   display: flex;
-  justify-content: space-between; // Position elements on opposite ends
+  justify-content: space-between; 
   align-items: center;
   margin-bottom: 2rem;
 `;
@@ -172,7 +172,7 @@ export default function Portfolio() {
             </ImageContainer>
             <ProjectTitle>{item.title}</ProjectTitle>
             <ProjectDescription>{item.description}</ProjectDescription>
-            <ViewProjectButton href={item.link} target="_blank" rel="noopener noreferrer">
+            <ViewProjectButton href={item.link} >
               View Project
             </ViewProjectButton>
           </PortfolioCard>
@@ -196,12 +196,6 @@ export default function Portfolio() {
           </PasswordBox>
         </PasswordModal>
       )}
-      
-      <section >
-      Hello world! <br />
-      This is the current date and time, as computed by Python:
-      <script type="py" src='/main.py'/>
-      </section>
 
       <ResumeSection/>
       <Footer></Footer>

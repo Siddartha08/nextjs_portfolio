@@ -11,7 +11,7 @@ import * as styles_ws from '/styles/WSGCaseStudy.module.css';
 import Footer from '../../../components/Footer';
 import Navbar from '../../../components/Navbar';
 import ResumeSection from '../../../components/ResumeSection';
-
+import withAuth from '@/components/withAuth';
 
 
 function whoshouldgetitPage(props) {
@@ -441,7 +441,7 @@ function whoshouldgetitPage(props) {
   </div>
     );
   }
-  export default whoshouldgetitPage;
+  export default withAuth(whoshouldgetitPage);
 
 
 

@@ -48,6 +48,7 @@ import { portfolioItems } from '@/data/portfolio';
 import Image from 'next/image';
 import withAuth from '@/components/withAuth';
 import React from 'react';
+import Navbar from '../../components/Navbar';
 
 const PortfolioPage = () => {
   const router = useRouter();
@@ -59,8 +60,18 @@ const PortfolioPage = () => {
     return <div>Portfolio item not found!</div>;
   }
 
+  const iframeHeight = item.id === 'covid-data-visualization' ? '3200px' : '1650px'; 
+
   return (
     <div className="container my-5">
+      <Navbar 
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2015729365.
+  pageTitle="Portfolio"  // Set the title for this page
+  navItems={[
+    { href: '/', text: 'Home' },
+    { href: '#Resume', text: 'Resume' }
+      ]} 
+      />
       <h1>{item.title}</h1>
       <p>
         Technologies used: {item.technologies.map((tech, index) => (
@@ -74,7 +85,7 @@ const PortfolioPage = () => {
           item.content
         )
       )}
-      <iframe src={item.html} width="100%" height="1650px"></iframe>
+      <iframe src={item.html} width="100%" height={iframeHeight}></iframe>
 
       
     </div>
