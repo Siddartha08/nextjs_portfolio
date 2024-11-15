@@ -11,19 +11,6 @@ def sum_faceamount_status_d(x):
     # Sum FaceAmount where Status is 'D'
     return x[status == 'D'].sum()
 
-# Prepare Data for Plot 1
-# df1 = seriatim_qx.pivot_table(index=['StudyYear'], values=['FaceAmount','qx_amount'], aggfunc={ 
-#         'FaceAmount': sum_faceamount_status_d,
-#         'qx_amount': 'sum'
-# })
-
-#df1['A/E'] = df1['FaceAmount'] / df1['qx_amount']
-
-# Prepare Data for Plot 2
-#df2 = seriatim_qx.pivot_table(index=['StudyYear'], values=['Amount','qx_count'], aggfunc='sum')
-
-#df2['A/E'] = df2['Amount'] / df2['qx_count']
-
 data = [
     {"StudyYear": 2010, "FaceAmount": 8778270000, "qx_amount": 8393456533.474, "A/E": 1.0458468409279684},
     {"StudyYear": 2011, "FaceAmount": 7572640000, "qx_amount": 7220337469.486, "A/E": 1.0487930837032025},
@@ -65,7 +52,7 @@ x1 =range(2010, 2025)
 df2 = pd.DataFrame(data2).set_index('StudyYear')  #pd.read_csv('studyyear_count.csv').set_index('StudyYear')
 x2 =range(2010, 2025)
 # Create figure with 1 row and 2 columns
-fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(14, 4))
+fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(12, 4))
 
 # Plot 1 on ax1
 ax1.plot(x1, df1['A/E'], color='blue', label='A/E')

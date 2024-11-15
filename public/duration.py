@@ -83,7 +83,7 @@ df2 = pd.DataFrame(data).set_index('Duration')
 x2 = np.arange(df2['Amount'].shape[0])
 
 # Create figure with 1 row and 2 columns
-fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(14, 4))
+fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(12, 4))
 
 # Plot 1 on ax1
 ax1.plot(x1, df1['A/E'], color='blue', label='A/E')
@@ -121,6 +121,5 @@ lines2, labels2 = ax3.get_legend_handles_labels()
 bars2, bar_labels2 = ax4.get_legend_handles_labels()
 ax3.legend(lines2 + bars2, labels2 + bar_labels2, loc="upper right")
 
-# Adjust layout to ensure plots are side by side without overlap
 plt.tight_layout()
 display(plt)

@@ -11,25 +11,11 @@ def sum_faceamount_status_d(x):
     # Sum FaceAmount where Status is 'D'
     return x[status == 'D'].sum()
 
-# Prepare Data for Plot 1
 
 # Define the bins and labels for the face amount bands
 bins = [0, 100000, 250000, 500000, 1000000, 1500000, 2000000, 3000000, 4000000, 5000000, float('inf')]
 labels = ['< 100', '101-250', '251-500', '501-1M', '1M - 1.5M', '1.5M -2M' , '2M', '3M', '4M','5M']
-# seriatim_qx = pd.read_csv('')
-# seriatim_qx['FaceAmount_band'] = pd.cut(seriatim_qx['FaceAmount'], bins=bins, labels=labels, right=False)
-# df1 = seriatim_qx.pivot_table(index=['FaceAmount_band'], values=['FaceAmount','qx_amount'], aggfunc={ 
-#         'FaceAmount': sum_faceamount_status_d,
-#         'qx_amount': 'sum'
-# })
-#x1 = np.arange(df['FaceAmount'].shape[0])
 
-df1['A/E'] = df1['FaceAmount'] / df1['qx_amount']
-
-# Prepare Data for Plot 2
-# df2 = seriatim_qx.pivot_table(index=['FaceAmount_band'], values=['Amount','qx_count'], aggfunc='sum')
-
-# df2['A/E'] = df2['Amount'] / df2['qx_count']
 
 data = [
     {"FaceAmount_band": "< 100", "FaceAmount": 5817338000, "qx_amount": 5500154455.794, "A/E": 1.0576681158238876},
@@ -65,7 +51,7 @@ x2 = labels
 
 
 # Create figure with 1 row and 2 columns
-fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(14, 4))
+fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(12, 4))
 
 # Plot 1 on ax1
 ax1.plot(x1, df1['A/E'], color='blue', label='A/E')

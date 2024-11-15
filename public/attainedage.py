@@ -180,7 +180,7 @@ x1 = np.arange(df1['FaceAmount'].shape[0])
 df2 = pd.DataFrame(data2).set_index('CurrentAge') 
 x2 = np.arange(df2['Amount'].shape[0])
 # Create figure with 1 row and 2 columns
-fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(14, 4))
+fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(12, 4))
 
 # Plot 1 on ax1
 ax1.plot(x1, df1['A/E'], color='blue', label='A/E')
@@ -220,27 +220,27 @@ ax3.legend(lines2 + bars2, labels2 + bar_labels2, loc="upper left")
 
 # Adjust layout to ensure plots are side by side without overlap
 plt.tight_layout()
-#display(plt.gcf().canvas)
+display(plt)
 # Save the figure to a BytesIO buffer
-buf = io.BytesIO()
-fig.savefig(buf, format="png")
-buf.seek(0)
+# buf = io.BytesIO()
+# fig.savefig(buf, format="png", dpi=600)
+# buf.seek(0)
 
-# Convert the image to a base64 string
-img = Image.open(buf)
-img_base64 = base64.b64encode(buf.getvalue()).decode("utf-8")
-buf.close()
+# # Convert the image to a base64 string
+# img = Image.open(buf)
+# img_base64 = base64.b64encode(buf.getvalue()).decode("utf-8")
+# buf.close()
 
-# Embed the base64 image into the HTML canvas
-canvas = document.querySelector("#plot")
-context = canvas.getContext("2d")
+# # Embed the base64 image into the HTML canvas
+# canvas = document.querySelector("#plot")
+# context = canvas.getContext("2d")
 
-# Create a new Image object in JavaScript
-js_img = document.createElement("img")
-js_img.src = f"data:image/png;base64,{img_base64}"
+# # Create a new Image object in JavaScript
+# js_img = document.createElement("img")
+# js_img.src = f"data:image/png;base64,{img_base64}"
 
-# Draw the image onto the canvas when loaded
-def onload(event):
-    context.drawImage(js_img, 0, 0, canvas.width, canvas.height)
+# # Draw the image onto the canvas when loaded
+# def onload(event):
+#     context.drawImage(js_img, 0, 0, canvas.width, canvas.height)
 
-js_img.onload = onload
+# js_img.onload = onload

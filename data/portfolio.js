@@ -2,6 +2,25 @@
 
 export const portfolioItems = [
   {
+    id: 'pyscript', 
+    title: 'Actuarial Insights: A/E Mortality',
+    description: "Generating A/E' based on Vbt_15 expecteds using Python", 
+    technologies: ['Nextjs', 'PyScript', 'Matplotlib', 'Jupyter'], 
+    image: '/images/actuary.png', // Replace with the actual image path
+    pimage: '/images/vaccine.png',
+    link: '/portfolio/python/casestudy',
+    date: 'November 2024',
+    protected: true,
+    longform: 'Using a simple linear regression sample past market performance and predict 30 days into the future. <br> working on text',
+    longform: [
+      { type: 'h2', content: 'Project Overview' },
+      { type: 'h6', content: 'Date Created: April 2021'},
+      { type: 'p', content: 'This project involved developing a machine learning model to predict stock prices using historical data to forcast the next 30 days' },
+      { type: 'h3', content: 'Purpose' },
+      { type: 'p', content: 'To illustrate my compentancy with simple model training and execution. I wanted to include something in my portfolio around training a model. I work with mortality models in my current role as a Data Engineer. The models I work with are almost all tabular in design which do not require a third party library to implement' },
+    ]
+  },
+  {
     id: 'dataquality', 
     title: 'Data Quality',
     description: 'Built a Data Quality Engine using python to orchestrate checks across three different databases', // Add a brief description
@@ -42,25 +61,7 @@ export const portfolioItems = [
     ]
   },
 
-  {
-    id: 'pyscript', 
-    title: 'Actuarial Insights: A/E Mortality',
-    description: "Generating A/E' based on Vbt_15 expecteds using Python", 
-    technologies: ['Nextjs', 'PyScript', 'Matplotlib', 'Jupyter'], 
-    image: '/images/actuary.png', // Replace with the actual image path
-    pimage: '/images/vaccine.png',
-    link: '/portfolio/python/casestudy',
-    date: 'November 2024',
-    protected: true,
-    longform: 'Using a simple linear regression sample past market performance and predict 30 days into the future. <br> working on text',
-    longform: [
-      { type: 'h2', content: 'Project Overview' },
-      { type: 'h6', content: 'Date Created: April 2021'},
-      { type: 'p', content: 'This project involved developing a machine learning model to predict stock prices using historical data to forcast the next 30 days' },
-      { type: 'h3', content: 'Purpose' },
-      { type: 'p', content: 'To illustrate my compentancy with simple model training and execution. I wanted to include something in my portfolio around training a model. I work with mortality models in my current role as a Data Engineer. The models I work with are almost all tabular in design which do not require a third party library to implement' },
-    ]
-  },
+
   {
     id: 'stock-forecasting',
     title: 'Stock Forecasting',
