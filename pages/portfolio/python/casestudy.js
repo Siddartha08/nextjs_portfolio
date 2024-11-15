@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 import Navbar from '../../../components/Navbar';
+import Footer from '../../../components/Footer'; 
+import ResumeSection from '/components/ResumeSection';
+import { Card, CardContent, Box, useTheme } from '@mui/material'
+
+function BannerImage() {
+  const theme = useTheme()
+  return (
+    <Box src='/images/Corebridge.png'
+      sx={{
+        backgroundImage: `url('/images/Corebridge.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '500px', // Adjust height as needed
+        width: '100%',
+        display: 'flex', // For content alignment
+        alignItems: 'center', // For content alignment
+        justifyContent: 'center', // For content alignment
+        [theme.breakpoints.down('sm')]: {
+          backgroundImage: `url('/images/coresquare.png')`, // Image for small screens
+          height: '200px'
+        },
+      }}
+    >
+      {/* Add any content you want to overlay on the banner image here */}
+    </Box>
+  );
+}
 
 export default function pythonCaseStudy() {
     const Container = styled.div`
@@ -14,19 +41,34 @@ export default function pythonCaseStudy() {
   `;
 
     return (
-        <Container>
+        <div className="container mx-auto px-4 py-8 bg-white max-w-3xl">
         <Navbar 
-        pageTitle="Portfolio"  // Set the title for this page
+        pageTitle="Actuarial Data"  // Set the title for this page
         navItems={[
             { href: '/', text: 'Home' },
             { href: '#Resume', text: 'Resume' }
         ]} 
         />
-        <section >
+
+      {BannerImage()}
+       <p className="mb-4">
+         </p>
+    <h1 className="text-3xl font-bold mb-4">Data Quality Case Study: Ensuring Accurate Data for Actuarial Modeling</h1>
+    <h6 ><strong>By: JP Emery Lead Engineer </strong></h6>
+    <br></br>
+        <section style={{"width":"100%"}}>
         Hello world! <br />
         This is the current date and time, as computed by Python:
-        <script type="py" src='/main.py'/>
+        <div >
+        <script type="py" src='/duration.py'/>
+        </div  >
+        <canvas id="plot" width="1200px" height="400px"></canvas>
+        <script type="py" src='/studyyear.py'/>
+        <script type="py" src='/attainedage.py'/>
+        <script type="py" src='/faceband.py'/>
         </section>
-        </Container>
+        <ResumeSection/>
+        <Footer></Footer>
+        </div>
     );
 }

@@ -1,4 +1,4 @@
-packages = ["pandas", "beautifulsoup4", "requests", "jinja2","plotly", "matplotlib"]
+packages = ["pandas", "beautifulsoup4", "requests", "jinja2","plotly", "matplotlib", "numpy"]
 
 plugins = ["https://pyscript.net/latest/plugins/python/py_tutor.py"]
 

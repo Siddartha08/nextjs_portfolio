@@ -44,12 +44,12 @@ export const portfolioItems = [
 
   {
     id: 'pyscript', 
-    title: 'Actuarial Data Analysis',
-    description: 'Showcasing procedurally generated life insurance data, and generating A/E based on Vbt_15 expecteds', // Add a brief description
-    technologies: ['Nextjs', 'React', 'Firebase ', 'Bootstrap'], 
-    image: '/images/construction.png', // Replace with the actual image path
+    title: 'Actuarial Insights: A/E Mortality',
+    description: "Generating A/E' based on Vbt_15 expecteds using Python", 
+    technologies: ['Nextjs', 'PyScript', 'Matplotlib', 'Jupyter'], 
+    image: '/images/actuary.png', // Replace with the actual image path
     pimage: '/images/vaccine.png',
-    link: '/portfolio/wsgit/casestudy',
+    link: '/portfolio/python/casestudy',
     date: 'November 2024',
     protected: true,
     longform: 'Using a simple linear regression sample past market performance and predict 30 days into the future. <br> working on text',
