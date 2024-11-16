@@ -208,7 +208,10 @@ export default function pythonCaseStudy() {
           </ul>
         </li>
         <li>
-          <a href="#advanced" className="block text-blue-600 hover:underline">Advanced</a>
+          <a href="#policy" className="block text-blue-600 hover:underline">Policy Generation Logic</a>
+        </li>
+        <li>
+          <a href="#disclosures" className="block text-blue-600 hover:underline">Disclosures</a>
         </li>
       </ul>
     </nav>
@@ -232,7 +235,7 @@ export default function pythonCaseStudy() {
       <h2 id='illustrations' className="text-2xl font-bold mt-6 mb-2">3. Illustrations</h2>
       <h4 id='Expecteds'>Expecteds</h4>
       <p className="mb-4">
-          The illustrations below show Actual to expecteds by Amount and Count based on duration, study year, attained age, and face amount band.
+          The illustrations below show actual to expecteds by Amount and Count based on duration, study year, attained age, and face amount band.
           The expecteds were computed on a policy level basis for 2.5 million simulated policies over 14 study years from 2010 - 2024. 
           after I generated the 2.5 million policies I mapped each with its correct VBT15 rate. After doing that I calculated each policies <strong>qx_amount</strong> and <strong>qx_count</strong>, which serve as the expeected basis when summed across the different splits
       </p>
@@ -252,21 +255,41 @@ export default function pythonCaseStudy() {
         <script type="py" src='/attainedage.py'/>
         <script type="py" src='/faceband.py'/>
         </section>
+   
+        <p className="mb-4">Below is the code used to generate the Duration illustration above.</p>
         <Card className="mb-4">
-      <CardContent>
-        <h3 className="text-xl font-bold mb-2">Code Snippet: Durations Illustration code</h3>
-        <pre className="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
-        {highlightSyntax(code)}
-        </pre>
-      </CardContent>
-    </Card>
+          <CardContent>
+            <h3 className="text-xl font-bold mb-2">Code Snippet: Durations Illustration code</h3>
+            <pre className="bg-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+            {highlightSyntax(code)}
+            </pre>
+          </CardContent>
+        </Card>
 
-    <h2 className="text-2xl font-bold mt-6 mb-2">1. Policy Generation logic</h2>
+    <h2 id="policy" className="text-2xl font-bold mt-6 mb-2">1. Policy Generation logic</h2>
       <p className="mb-4">
-      Generating an A/E at work is very easy because I have access to all the data necessary to create illustrations for analysis. Outside of work, I do not have a policy level data source I could use because all companies correctly protect the PII of their policy holders. In lieu, of such a data source, I have programmatically created data to do calculations and transformations on. The data used could be considered a closed block of business for initial analysis purposes. The bulk of the work for this project was in the data creation and adjustments. You can find that work near the bottom of the page. I lead with Charts for A/E by both Count and Amount. 
-      </p>
+      Finding a data source for life insurance policies is impossible outside of the particular company that sold the policies. 
+      Because of this, I have created a class that will generate life insurance policies for me. My Notebook shown below has all the code behind the 2.5 million policies used for my illustrations.
+            </p>
+            <br></br>
+            <p className="mb-4">Lets break down the order of events the code executes on.</p>
+      <ul className="list-disc pl-5 mb-4">
+      <li>1. Creates the initial list of policies base on a start study year, and number of policeis required.</li>
+      <li>2. Before or after the initial policies are created you can import the rate file. The csv used had already been cleaned.</li>
+      <li>
+      <div >3. Then the code begins to iterate on the initial policies by study year. </div>
+            <ul className="ml-4 mt-1 space-y-1">
+            <li><div href="#Expecteds" className="block text-gray-600 hover:underline">Starting by merging the mortality rates with the initial list of policies</div></li>
+            <li><div href="#Actuals" className="block text-gray-600 hover:underline">Then looping through each policy individually determines if one of them experiences a mortality event.</div></li>
+            <li><div href="#Actuals" className="block text-gray-600 hover:underline">This code also deals with edge cases like if a duration or age exceeds some threshold I set.</div></li>
+            <li><div href="#Actuals" className="block text-gray-600 hover:underline">And finally a nice to have is to delete data frames that are not needed in memory and optimize the study year data by changing certain fields to categorical.</div></li>
+          </ul>
+        </li>
+      <li>4. After the data is fully filled in I add the qx factors on a policy level, for count and amount.</li>
+      </ul>
+      <p className="mb-4" >Interesting Facts about the data. 2.5 million policies, created 35 million rows worth of data and when loaded into memory only take up 2.9GB worth of ram. I consider that a success from an efficiency standpoint.</p>
       <iframe src="/ActuarialData_display.html" width="100%" height={iframeHeight}></iframe>
-        <h2 id='disclosures' className="text-2xl font-bold mt-6 mb-2">X. Disclosures</h2>
+        <h2 id='disclosures' className="text-2xl font-bold mt-6 mb-2">5. Disclosures</h2>
       <ul className="list-disc pl-5 mb-4">
       <li>The rates I am using are based on the Valuation Basic Table 2015 RR100 for ANB.</li>
       <li> No new policies are added after the initial policy generation. This exercise essentially illustrates mortality on a closed block of business.</li>
