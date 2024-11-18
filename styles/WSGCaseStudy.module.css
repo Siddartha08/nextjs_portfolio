@@ -1,0 +1,115 @@
+.section {
+  width: 100%
+  }
+.title {
+width: 100%
+}
+.tableContainer {
+/* Styles for the container around the table */
+padding: 20px; /* Example: Add padding */
+}
+.hiddenRow {
+display: none; 
+}
+.dataUpdateMessage {
+padding: 20px;
+}
+.feedbackMessage {
+padding: 20px; 
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+div.or-section {
+  margin:10px
+}
+.format-content {
+  display: flex;
+  justify-content: center;
+
+}
+
+a.big-blue-button {
+  display: block;
+  width: 250px;
+  height: 100px;
+  background: #007bff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  line-height: 25px;
+
+}
+
+.hiddenRow {
+    display: none;
+  }
+  /* Small screens (below medium breakpoint) */
+  @media (max-width: 768px) { 
+    .d-sm-none {
+      display: none;
+    }
+  }
+  /* Medium screens (between medium and large breakpoints) */
+  @media (min-width: 768px) and (max-width: 992px) {
+    .d-md-none {
+      display: none;
+    }
+  }
+  /* Large screens (between large and extra-large breakpoints) */
+  @media (min-width: 992px) and (max-width: 1200px) { 
+    .d-lg-none {
+      display: none;
+    }
+  }
+  /* Extra-large screens (above extra-large breakpoint) */
+  @media (min-width: 1200px) { 
+    .d-xl-none {
+      display: none;
+    }
+  }
+
+  /* .link-button {
+    display: block;
+    width: 250px;
+    height: 100px;
+    background: #007bff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+  } */
+
+  .or-section {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: 25%;
+    height: 200px;
+  }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    height: 20px;
+  }
+  .big-blue-button {
+    display: block;
+    width: 250px;
+    height: 100px;
+    background: #007bff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+
+  }
+  .big-blue-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }

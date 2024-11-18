@@ -1,0 +1,67 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  scroll-padding-top: 57px;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 56.45px; 
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.frosted-image {
+  position: relative; /* Ensure the ::before pseudo-element is positioned correctly */
+  overflow: hidden; /* Hide any content that spills outside the image */
+}
+.frosted-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* Adjust color and opacity */
+  backdrop-filter: blur(10px); /* Adjust blur amount */
+  z-index: 1; /* Ensure the blur effect is on top of the image */
+}
+.frosted-image img {
+  display: block; /* Prevents a small gap below the image */
+  width: 100%;
+  height: auto;
+  z-index: 0; /* Ensure the image is behind the blur effect */
+}
+
