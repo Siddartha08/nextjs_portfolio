@@ -3,6 +3,7 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer'; 
 import ResumeSection from '/components/ResumeSection';
 import { Card, CardContent, Box, useTheme } from '@mui/material'
+import withAuth from '@/components/withAuth';
 import React from 'react';
 import { portfolioItems } from '@/data/portfolio';
 const code = `df1 = pd.DataFrame(data2).set_index('Duration')
@@ -153,8 +154,7 @@ function BannerImage() {
     </Box>
   );
 }
-
-export default function pythonCaseStudy() {
+const pythonCaseStudy = () => {
     const Container = styled.div`
     padding
   : 2rem 4rem; // MODIFIED: Added more horizontal padding
@@ -184,7 +184,7 @@ export default function pythonCaseStudy() {
     <br></br>
     <p className="mb-4">
 
-    Our Experience studies department works to review past performance across different life insurance product lines, model definitions, and data sources. The most important metric that is examined across different splits is what’s called the Actual to Expected Mortality or “A/E”. A ratio that tells Operations if our currently modeled expectation matches what is occurring. I work on the Actuarial Data Team as a Data Engineer. While I am not an actuary, I do wish to highlight my industry knowledge and experience I have gained in support of my peers. This project is an attempt to showcase that experience and create an A/E based on VBT15 Expecteds. 
+    Our experience studies department works to review past performance across different life insurance product lines, model definitions, and data sources. The most important metric that is examined across different splits is what’s called the Actual to Expected Mortality or “A/E”. A ratio that tells Operations if our currently modeled expectation matches what is occurring. I work on the Actuarial Data Team as a Data Engineer. While I am not an actuary, I do wish to highlight my industry knowledge and experience I have gained in support of my peers. This project is an attempt to showcase that experience and create an A/E based on VBT15 Expecteds. 
         </p>
       <p className="mb-4">
       <strong>Note:</strong> <em>Due to proprietary considerations any trend or code employed is entirely of my own design. </em>
@@ -237,7 +237,7 @@ export default function pythonCaseStudy() {
       <p className="mb-4">
           The illustrations below show actual to expecteds by Amount and Count based on duration, study year, attained age, and face amount band.
           The expecteds were computed on a policy level basis for 2.5 million simulated policies over 14 study years from 2010 - 2024. 
-          after I generated the 2.5 million policies I mapped each with its correct VBT15 rate. After doing that I calculated each policies <strong>qx_amount</strong> and <strong>qx_count</strong>, which serve as the expeected basis when summed across the different splits
+          after I generated the 2.5 million policies I mapped each with its correct VBT15 rate. After doing that I calculated each policies <strong>qx_amount</strong> and <strong>qx_count</strong>, which serve as the expected basis when summed across the different splits
       </p>
       <h4 id='Actuals'>Actuals</h4>
       <p className="mb-4">I wanted my results to be somewhat reasonable so I took the baseline mortality of the VBT15 and applied
@@ -302,3 +302,5 @@ export default function pythonCaseStudy() {
         </div>
     );
 }
+
+export default withAuth(pythonCaseStudy);
