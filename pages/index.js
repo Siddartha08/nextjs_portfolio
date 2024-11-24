@@ -271,6 +271,18 @@ export default function Home() {
                 <h3 className="h4 mb-2">Pandas</h3>
               </div>
             </div>
+            <div className="col-6 col-lg-2 col-md-2 text-center">
+              <div className="mt-5">
+                <Image src="/images/snowflake.png" alt="Python" width={50} height={50} />
+                <h3 className="h4 mb-2">Snowflake</h3>
+              </div>
+            </div>
+            <div className="col-6 col-lg-2 col-md-2 text-center">
+              <div className="mt-5">
+                <Image src="/images/oracle.png" alt="Python" width={50} height={50} />
+                <h3 className="h4 mb-2">Oracle</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
