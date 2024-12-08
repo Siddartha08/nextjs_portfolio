@@ -219,7 +219,7 @@ export default function Home() {
             <div className="col-6 col-lg-2 col-md-2 text-center">
               <div className="mt-5">
                 <Image src="/images/Python.png" alt="Python" width={50} height={50} />
-                <h3 className="h4 mb-2">Python</h3>
+                <h4 className="h4 mb-2">Python</h4>
               </div>
             </div>
             {/* Repeat for other tech stacks */}
@@ -273,7 +273,7 @@ export default function Home() {
             </div>
             <div className="col-6 col-lg-2 col-md-2 text-center">
               <div className="mt-5">
-                <Image src="/images/snowflake.png" alt="Python" width={50} height={50} />
+                <Image src="/images/snow.png" alt="Python" width={50} height={50} />
                 <h3 className="h4 mb-2">Snowflake</h3>
               </div>
             </div>
