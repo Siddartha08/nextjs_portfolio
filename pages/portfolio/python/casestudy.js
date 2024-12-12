@@ -5,6 +5,7 @@ import ResumeSection from '/components/ResumeSection';
 import { Card, CardContent, Box, useTheme } from '@mui/material'
 import withAuth from '@/components/withAuth';
 import React from 'react';
+import Image from 'next/image';
 import { portfolioItems } from '@/data/portfolio';
 const code = `df1 = pd.DataFrame(data2).set_index('Duration')
 x1 = np.arange(df1['FaceAmount'].shape[0])
@@ -247,13 +248,19 @@ const pythonCaseStudy = () => {
 
         <p></p>
         <section style={{"width":"100%"}}>
+        <div> <strong>Note:</strong>  <em> 12/11/2024 - Pyscript url returning 404 - issue https://github.com/pyscript/pyscript/issues/2264  Changing ".py" files to images of results </em>
+        </div>
         <div >
+        <Image src="/images/durationImage.png" alt="Python" width={1200} height={400} />
         <script type="py" src='/duration.py'/>
         </div  >
         {/* <canvas id="plot" width="1200px" height="400px"></canvas> */}
         <script type="py" src='/studyyear.py'/>
+        <Image src="/images/studyyear.png" alt="Python" width={1200} height={400} />
         <script type="py" src='/attainedage.py'/>
+        <Image src="/images/attainedage.png" alt="Python" width={1200} height={400} />
         <script type="py" src='/faceband.py'/>
+        <Image src="/images/faceband.png" alt="Python" width={1200} height={400} />
         </section>
    
         <p className="mb-4">Below is the code used to generate the Duration illustration above.</p>
